@@ -478,6 +478,9 @@ export default function About() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               {/* Photo Placeholder */}
               <div className="relative order-2 lg:order-1">
+                {/* Decorative element - outside overflow container */}
+                <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-sage-soft/30 blur-sm" />
+
                 <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden bg-gradient-to-br from-linen to-cream shadow-xl shadow-sand/20">
                   <div className="absolute inset-0 bg-gradient-to-br from-sage-soft/15 to-terracotta-soft/10 flex items-center justify-center">
                     <div className="text-center space-y-4 p-8">
@@ -501,8 +504,6 @@ export default function About() {
                       </p>
                     </div>
                   </div>
-
-                  <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-sage-soft/30 -z-10" />
                 </div>
               </div>
 
