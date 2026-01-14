@@ -1,222 +1,323 @@
+"use client";
+
+import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const faqs = [
   {
-    question: "How does online therapy work?",
-    answer:
-      "Sessions take place over secure video. You’ll receive a private link and join from a quiet, comfortable space.",
+    category: "Getting Started",
+    questions: [
+      {
+        question: "How do I schedule my first appointment?",
+        answer:
+          "You can book a free 15-minute consultation call through the booking button on this site. During this call, we'll discuss your needs and determine if we're a good fit. If so, we'll schedule your first full session.",
+      },
+      {
+        question: "What happens in the first session?",
+        answer:
+          "The first session is an intake where we explore your history, current challenges, and therapy goals. It's a chance for us to get to know each other and begin building a therapeutic relationship. You can share as much or as little as feels comfortable.",
+      },
+      {
+        question: "How long are therapy sessions?",
+        answer:
+          "Individual sessions are 50 minutes. Couples and family sessions may be extended to 60-80 minutes depending on your needs.",
+      },
+    ],
   },
   {
-    question: "Do you offer telehealth only?",
-    answer:
-      "Yes. All sessions are conducted online to provide flexibility across California.",
+    category: "Online Therapy",
+    questions: [
+      {
+        question: "How does online therapy work?",
+        answer:
+          "Sessions take place over secure, HIPAA-compliant video. You'll receive a private link before each session and can join from any quiet, comfortable space with a stable internet connection. Many clients find telehealth just as effective as in-person therapy.",
+      },
+      {
+        question: "Do you offer in-person sessions?",
+        answer:
+          "At this time, all sessions are conducted online via telehealth. This allows me to serve clients throughout California with greater flexibility and accessibility.",
+      },
+      {
+        question: "What if I have technical difficulties during a session?",
+        answer:
+          "If we get disconnected, I'll attempt to reconnect via video. If that doesn't work, we can continue by phone. Technical issues are rare, but we'll always find a way to complete your session.",
+      },
+    ],
   },
   {
-    question: "Do you take insurance?",
-    answer:
-      "I am out-of-network. Superbills are available for reimbursement depending on your plan.",
+    category: "Fees & Insurance",
+    questions: [
+      {
+        question: "How much does therapy cost?",
+        answer:
+          "Individual sessions are $175 per 50-minute session. Couples and family sessions may have different rates based on session length.",
+      },
+      {
+        question: "Do you accept insurance?",
+        answer:
+          "I am an out-of-network provider. This means I don't bill insurance directly, but I can provide superbills (detailed receipts) that you can submit to your insurance company for potential reimbursement. Many PPO plans offer out-of-network benefits.",
+      },
+      {
+        question: "What payment methods do you accept?",
+        answer:
+          "I accept credit cards, debit cards, and HSA/FSA cards. Payment is collected at the time of each session.",
+      },
+    ],
   },
   {
-    question: "What issues do you work with?",
-    answer:
-      "Anxiety, relationship challenges, life transitions, depression, self-esteem, boundaries, and grief.",
-  },
-  {
-    question: "How often should I attend sessions?",
-    answer:
-      "Most clients meet weekly or bi-weekly. We’ll decide together based on your goals and needs.",
+    category: "The Therapy Process",
+    questions: [
+      {
+        question: "How often should I attend sessions?",
+        answer:
+          "Most clients start with weekly sessions to build momentum and establish a strong therapeutic relationship. As you progress, we may transition to bi-weekly sessions. We'll decide together based on your goals and needs.",
+      },
+      {
+        question: "How long will I need to be in therapy?",
+        answer:
+          "The length of therapy varies depending on your goals and challenges. Some clients find benefit in short-term work (8-12 sessions), while others prefer longer-term support. We'll regularly check in about your progress and adjust as needed.",
+      },
+      {
+        question: "What issues do you work with?",
+        answer:
+          "I specialize in anxiety, relationship challenges, life transitions, depression, self-esteem, boundaries, grief, and family dynamics. If you're unsure whether I can help with your specific concern, please reach out for a consultation.",
+      },
+    ],
   },
 ];
 
-export default function Resources() {
+export default function FAQs() {
+  const [openItems, setOpenItems] = useState<string[]>([]);
+
+  const toggleItem = (question: string) => {
+    setOpenItems((prev) =>
+      prev.includes(question)
+        ? prev.filter((q) => q !== question)
+        : [...prev, question],
+    );
+  };
+
   return (
     <div className="min-h-screen bg-cream">
       <Header />
 
       <main>
-        <section className="relative min-h-[55vh] flex items-center overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute top-14 -right-20 w-[360px] h-[360px] rounded-full bg-gradient-to-br from-sage-soft/25 to-transparent animate-float" />
-            <div className="absolute bottom-0 -left-24 w-[420px] h-[420px] rounded-full bg-gradient-to-tr from-terracotta-soft/20 to-transparent animate-float-reverse" />
+        {/* Hero Section */}
+        <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+          {/* Organic Background Shapes */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-20 -right-32 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-sage-soft/30 to-transparent animate-float" />
+            <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-terracotta-soft/20 to-transparent animate-float-reverse" />
+            <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] rounded-full bg-linen/50 animate-pulse-gentle" />
+
+            {/* Subtle grain texture overlay */}
+            <div
+              className="absolute inset-0 opacity-[0.015]"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+              }}
+            />
           </div>
 
-          <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 py-24">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-6">
-                <span className="inline-block font-serif text-sage text-lg italic">
-                  Resources & Support
-                </span>
-                <h1 className="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight">
-                  Guidance between sessions
-                  <br />
-                  <span className="font-medium">
-                    and support when you need it
+          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20">
+            <div className="max-w-3xl mx-auto text-center space-y-8">
+              <div className="space-y-6 opacity-0-initial animate-fade-in">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-sage-soft/30 rounded-full">
+                  <span className="w-2 h-2 rounded-full bg-sage animate-pulse" />
+                  <span className="text-sm text-charcoal-soft tracking-wide">
+                    Questions & Answers
                   </span>
+                </div>
+
+                <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-charcoal leading-[1.1] tracking-tight">
+                  Frequently
+                  <br />
+                  <span className="font-medium italic text-charcoal-soft">
+                    Asked
+                  </span>{" "}
+                  Questions
                 </h1>
-                <p className="text-lg text-warm-gray leading-relaxed max-w-xl">
-                  Explore mental health resources, therapeutic tools, and
-                  frequently asked questions to help you feel informed and
-                  supported.
-                </p>
               </div>
 
-              <div className="relative">
-                <div className="aspect-[4/3] max-w-md mx-auto rounded-[2rem] overflow-hidden bg-gradient-to-br from-linen to-cream-dark shadow-2xl shadow-sand/30">
-                  <div className="absolute inset-0 bg-gradient-to-br from-sage-soft/20 to-terracotta-soft/20 flex items-center justify-center">
-                    <div className="text-center space-y-4 p-8">
-                      <div className="w-14 h-14 mx-auto rounded-full bg-cream flex items-center justify-center">
-                        <svg
-                          className="w-7 h-7 text-sand"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
+              <p className="text-lg text-warm-gray leading-relaxed max-w-2xl mx-auto opacity-0-initial animate-fade-in-up delay-200">
+                Find answers to common questions about therapy, the process, and
+                what to expect. If you don&apos;t see your question here, please
+                reach out.
+              </p>
+
+              <div className="opacity-0-initial animate-fade-in-up delay-400">
+                <a
+                  href="/contact"
+                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-charcoal text-cream rounded-full hover:bg-charcoal-soft transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                >
+                  <span>Still have questions?</span>
+                  <svg
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Categories */}
+        <section className="py-24 md:py-32 bg-cream-dark relative overflow-hidden">
+          {/* Decorative curves */}
+          <svg
+            className="absolute top-0 left-0 right-0 w-full h-16 text-cream"
+            preserveAspectRatio="none"
+            viewBox="0 0 1440 64"
+          >
+            <path
+              fill="currentColor"
+              d="M0,32 C360,64 1080,0 1440,32 L1440,0 L0,0 Z"
+            />
+          </svg>
+
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
+            <div className="space-y-12">
+              {faqs.map((category, categoryIndex) => (
+                <div key={category.category} className="space-y-6">
+                  {/* Category Header */}
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-sage-soft to-sage-soft/50 flex items-center justify-center text-charcoal font-serif font-medium">
+                      {String(categoryIndex + 1).padStart(2, "0")}
+                    </div>
+                    <h2 className="font-serif text-2xl md:text-3xl text-charcoal">
+                      {category.category}
+                    </h2>
+                  </div>
+
+                  {/* Questions */}
+                  <div className="space-y-4 pl-16">
+                    {category.questions.map((item) => {
+                      const isOpen = openItems.includes(item.question);
+                      return (
+                        <div
+                          key={item.question}
+                          className="group bg-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1.5}
-                            d="M12 6v6l4 2"
-                          />
-                        </svg>
-                      </div>
-                      <p className="text-warm-gray text-sm">
-                        Image of a journal, tea, or calming workspace
-                      </p>
-                    </div>
+                          <button
+                            onClick={() => toggleItem(item.question)}
+                            className="w-full p-6 flex items-start justify-between gap-4 text-left"
+                          >
+                            <span className="font-medium text-charcoal group-hover:text-charcoal-soft transition-colors duration-300">
+                              {item.question}
+                            </span>
+                            <div
+                              className={`w-8 h-8 rounded-full bg-sage-soft/30 flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                                isOpen ? "bg-sage-soft/50 rotate-180" : ""
+                              }`}
+                            >
+                              <svg
+                                className="w-4 h-4 text-charcoal-soft"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M19 9l-7 7-7-7"
+                                />
+                              </svg>
+                            </div>
+                          </button>
+                          <div
+                            className={`overflow-hidden transition-all duration-300 ${
+                              isOpen ? "max-h-96" : "max-h-0"
+                            }`}
+                          >
+                            <div className="px-6 pb-6">
+                              <div className="pt-2 border-t border-sand/30">
+                                <p className="text-warm-gray leading-relaxed pt-4">
+                                  {item.answer}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                </div>
-                <div className="absolute -bottom-6 -right-6 w-20 h-20 rounded-full bg-sage-soft/30 -z-10" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-20 bg-cream-dark">
-          <div className="max-w-6xl mx-auto px-6 lg:px-8">
-            <div className="text-center space-y-4 mb-12">
-              <span className="inline-block font-serif text-sage text-lg italic">
-                Educational Content
-              </span>
-              <h2 className="font-serif text-3xl md:text-4xl text-charcoal">
-                Insights to support your growth
-              </h2>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Understanding Anxiety Responses",
-                  desc: "Learn how your nervous system responds to stress and what helps soothe it.",
-                },
-                {
-                  title: "Healthy Boundaries 101",
-                  desc: "Practical guidance for setting boundaries without guilt.",
-                },
-                {
-                  title: "Attachment & Relationships",
-                  desc: "Explore how attachment styles shape closeness and conflict.",
-                },
-                {
-                  title: "Mindfulness for Emotional Regulation",
-                  desc: "Simple practices to stay grounded during hard moments.",
-                },
-                {
-                  title: "Navigating Life Transitions",
-                  desc: "Strategies for coping with change and uncertainty.",
-                },
-                {
-                  title: "Self-Esteem & Identity Work",
-                  desc: "Reconnecting with your values and sense of self.",
-                },
-              ].map((article) => (
-                <div
-                  key={article.title}
-                  className="p-6 bg-cream rounded-2xl shadow-sm"
-                >
-                  <div className="w-10 h-10 rounded-full bg-sage-soft/30 flex items-center justify-center mb-4">
-                    <span className="text-charcoal-soft text-sm">Read</span>
-                  </div>
-                  <h3 className="font-serif text-2xl text-charcoal">
-                    {article.title}
-                  </h3>
-                  <p className="text-warm-gray mt-3">{article.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-20 bg-cream">
-          <div className="max-w-6xl mx-auto px-6 lg:px-8 grid lg:grid-cols-[1.1fr_1fr] gap-12 items-start">
-            <div className="space-y-6">
-              <span className="inline-block font-serif text-sage text-lg italic">
-                Recommended Materials
-              </span>
-              <h3 className="font-serif text-3xl text-charcoal">
-                Books, podcasts, and tools
-              </h3>
-              <ul className="space-y-3 text-warm-gray">
-                <li>The Body Keeps the Score — Bessel van der Kolk</li>
-                <li>Attached — Amir Levine & Rachel Heller</li>
-                <li>Set Boundaries, Find Peace — Nedra Glover Tawwab</li>
-                <li>On Being Podcast — Krista Tippett</li>
-              </ul>
-            </div>
-
-            <div className="relative">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-gradient-to-br from-linen to-cream shadow-xl shadow-sand/20">
-                <div className="absolute inset-0 bg-gradient-to-br from-sage-soft/15 to-terracotta-soft/10 flex items-center justify-center">
-                  <div className="text-center space-y-3 p-6">
-                    <div className="w-12 h-12 mx-auto rounded-full bg-cream flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 text-sand"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M12 6h8m-8 4h8m-8 4h8m-8 4h8M4 6h2m-2 4h2m-2 4h2m-2 4h2"
-                        />
-                      </svg>
-                    </div>
-                    <p className="text-warm-gray text-sm">
-                      Image of books or a resource shelf
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Quick Contact Section */}
+        <section className="py-24 md:py-32 bg-cream relative overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-sage-soft/20 to-terracotta-soft/10 blur-3xl" />
           </div>
-        </section>
 
-        <section className="py-20 bg-cream-dark">
-          <div className="max-w-5xl mx-auto px-6 lg:px-8">
-            <div className="text-center space-y-4 mb-10">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
+            <div className="text-center space-y-8">
               <span className="inline-block font-serif text-sage text-lg italic">
-                Therapy FAQs
+                Need More Information?
               </span>
-              <h2 className="font-serif text-3xl md:text-4xl text-charcoal">
-                Answers to common questions
+              <h2 className="font-serif text-4xl md:text-5xl font-light text-charcoal leading-tight">
+                Let&apos;s connect
               </h2>
-            </div>
-            <div className="space-y-4">
-              {faqs.map((item) => (
-                <details
-                  key={item.question}
-                  className="group p-6 bg-cream rounded-2xl shadow-sm"
+              <p className="text-lg text-warm-gray leading-relaxed max-w-2xl mx-auto">
+                If you didn&apos;t find what you were looking for, I&apos;m
+                happy to answer your questions directly. Book a free
+                consultation or send me a message.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
+                <a
+                  href="/contact"
+                  className="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-charcoal text-cream rounded-full hover:bg-charcoal-soft transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-lg"
                 >
-                  <summary className="cursor-pointer list-none flex items-center justify-between text-charcoal font-medium">
-                    {item.question}
-                    <span className="text-sage group-open:rotate-45 transition-transform">
-                      +
-                    </span>
-                  </summary>
-                  <p className="text-warm-gray mt-4">{item.answer}</p>
-                </details>
-              ))}
+                  <span>Contact Me</span>
+                  <svg
+                    className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="tel:9164712562"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-sand text-charcoal-soft rounded-full hover:border-sage hover:text-charcoal transition-all duration-300"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                  <span>(916) 471-2562</span>
+                </a>
+              </div>
             </div>
           </div>
         </section>

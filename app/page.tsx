@@ -92,6 +92,10 @@ export default function Home() {
 
             {/* Right Content - Photo Placeholder */}
             <div className="relative opacity-0-initial animate-scale-in delay-300">
+              {/* Organic decorative elements - outside overflow container */}
+              <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-sage-soft/40 blur-sm" />
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 rounded-full bg-terracotta-soft/30 blur-sm" />
+
               <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-gradient-to-br from-linen to-cream-dark shadow-2xl shadow-sand/30">
                 {/* Decorative frame */}
                 <div className="absolute inset-4 border border-sand/50 rounded-[1.5rem]" />
@@ -119,10 +123,6 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-
-                {/* Organic decorative elements */}
-                <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-sage-soft/40 -z-10" />
-                <div className="absolute -bottom-4 -left-4 w-24 h-24 rounded-full bg-terracotta-soft/30 -z-10" />
               </div>
             </div>
           </div>
@@ -157,6 +157,9 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Secondary Photo Placeholder */}
             <div className="relative order-2 lg:order-1">
+              {/* Decorative elements - outside overflow container */}
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-sage-soft/30 blur-sm" />
+
               <div className="relative aspect-[3/4] max-w-md mx-auto rounded-[2rem] overflow-hidden bg-gradient-to-br from-linen to-cream shadow-xl shadow-sand/20">
                 {/* Photo placeholder */}
                 <div className="absolute inset-0 bg-gradient-to-br from-sage-soft/10 to-terracotta-soft/10 flex items-center justify-center">
@@ -181,9 +184,6 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-
-                {/* Decorative elements */}
-                <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-sage-soft/30 -z-10" />
               </div>
             </div>
 
