@@ -1,5 +1,10 @@
+import Image from "next/image";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import cozyChair from "./assets/Home/cozy_chair.webp";
+import meagsy from "./assets/Home/meagsy.webp";
+import laptopCouch from "./assets/Home/laptop-couch.webp";
+import glassesDesk from "./assets/Home/glasses-desk.webp";
 
 export default function Home() {
   const navLinks = [
@@ -96,32 +101,19 @@ export default function Home() {
               <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-sage-soft/40 blur-sm" />
               <div className="absolute -bottom-4 -left-4 w-24 h-24 rounded-full bg-terracotta-soft/30 blur-sm" />
 
-              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-gradient-to-br from-linen to-cream-dark shadow-2xl shadow-sand/30">
+              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-sand/30">
                 {/* Decorative frame */}
                 <div className="absolute inset-4 border border-sand/50 rounded-[1.5rem]" />
 
                 {/* Photo placeholder with elegant styling */}
-                <div className="absolute inset-8 rounded-[1rem] bg-gradient-to-br from-sage-soft/20 to-terracotta-soft/20 flex items-center justify-center">
-                  <div className="text-center space-y-4 p-8">
-                    <div className="w-20 h-20 mx-auto rounded-full bg-cream flex items-center justify-center">
-                      <svg
-                        className="w-10 h-10 text-sand"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <p className="text-warm-gray text-sm">
-                      Your professional photo here
-                    </p>
-                  </div>
+                <div className="absolute inset-8 rounded-[1rem] overflow-hidden">
+                  <Image
+                    src={meagsy}
+                    alt="Therapist portrait in a calm setting"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 40vw, 80vw"
+                  />
                 </div>
               </div>
             </div>
@@ -160,30 +152,14 @@ export default function Home() {
               {/* Decorative elements - outside overflow container */}
               <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-sage-soft/30 blur-sm" />
 
-              <div className="relative aspect-[3/4] max-w-md mx-auto rounded-[2rem] overflow-hidden bg-gradient-to-br from-linen to-cream shadow-xl shadow-sand/20">
-                {/* Photo placeholder */}
-                <div className="absolute inset-0 bg-gradient-to-br from-sage-soft/10 to-terracotta-soft/10 flex items-center justify-center">
-                  <div className="text-center space-y-4 p-8">
-                    <div className="w-16 h-16 mx-auto rounded-full bg-cream flex items-center justify-center">
-                      <svg
-                        className="w-8 h-8 text-sand"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <p className="text-warm-gray text-sm">
-                      Secondary portrait or candid photo
-                    </p>
-                  </div>
-                </div>
+              <div className="relative aspect-[3/4] max-w-md mx-auto rounded-[2rem] overflow-hidden shadow-xl shadow-sand/20">
+                <Image
+                  src={glassesDesk}
+                  alt="Glasses resting on a desk with warm light"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                />
               </div>
             </div>
 
@@ -237,32 +213,14 @@ export default function Home() {
 
               {/* Environmental Photo Placeholder */}
               <div className="relative mt-8">
-                <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-linen to-cream-dark shadow-lg shadow-sand/20">
-                  <div className="absolute inset-0 bg-gradient-to-br from-sage-soft/10 to-terracotta-soft/10 flex items-center justify-center">
-                    <div className="text-center space-y-3 p-6">
-                      <div className="w-12 h-12 mx-auto rounded-full bg-cream flex items-center justify-center">
-                        <svg
-                          className="w-6 h-6 text-sand"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1.5}
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                      <p className="text-warm-gray text-sm">
-                        Environmental or lifestyle photo
-                      </p>
-                      <p className="text-warm-gray/60 text-xs">
-                        (cozy space, nature, soft lighting)
-                      </p>
-                    </div>
-                  </div>
+                <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-lg shadow-sand/20">
+                  <Image
+                    src={cozyChair}
+                    alt="Cozy therapy chair in a calming space"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                  />
                 </div>
               </div>
             </div>
@@ -548,21 +506,13 @@ export default function Home() {
                   </div>
                   {/* Small telehealth photo placeholder */}
                   <div className="hidden sm:block w-24 h-24 rounded-xl overflow-hidden bg-gradient-to-br from-linen to-cream shadow-md flex-shrink-0">
-                    <div className="w-full h-full bg-gradient-to-br from-sage-soft/20 to-terracotta-soft/10 flex items-center justify-center">
-                      <svg
-                        className="w-6 h-6 text-sand"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
+                    <Image
+                      src={laptopCouch}
+                      alt="Therapy session on a laptop with a cozy couch"
+                      width={96}
+                      height={96}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
                 <h3 className="font-serif text-3xl text-charcoal">

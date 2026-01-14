@@ -1,5 +1,8 @@
+import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import greenTrail from "../assets/About/green-trail.webp";
+import officeCorner from "../assets/About/office-corner.webp";
 
 export default function About() {
   return (
@@ -171,30 +174,14 @@ export default function About() {
                 {/* Decorative element - outside overflow container */}
                 <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-sage-soft/30 blur-sm" />
 
-                <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden bg-gradient-to-br from-linen to-cream shadow-xl shadow-sand/20">
-                  {/* Photo placeholder */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-sage-soft/10 to-terracotta-soft/10 flex items-center justify-center">
-                    <div className="text-center space-y-4 p-8">
-                      <div className="w-16 h-16 mx-auto rounded-full bg-cream flex items-center justify-center">
-                        <svg
-                          className="w-8 h-8 text-sand"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1.5}
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                      <p className="text-warm-gray text-sm">
-                        Lifestyle image of a serene office corner
-                      </p>
-                    </div>
-                  </div>
+                <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl shadow-sand/20">
+                  <Image
+                    src={officeCorner}
+                    alt="Serene therapy office corner with soft light"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                  />
                 </div>
               </div>
             </div>
@@ -481,29 +468,14 @@ export default function About() {
                 {/* Decorative element - outside overflow container */}
                 <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-sage-soft/30 blur-sm" />
 
-                <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden bg-gradient-to-br from-linen to-cream shadow-xl shadow-sand/20">
-                  <div className="absolute inset-0 bg-gradient-to-br from-sage-soft/15 to-terracotta-soft/10 flex items-center justify-center">
-                    <div className="text-center space-y-4 p-8">
-                      <div className="w-16 h-16 mx-auto rounded-full bg-cream flex items-center justify-center">
-                        <svg
-                          className="w-8 h-8 text-sand"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1.5}
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                      <p className="text-warm-gray text-sm">
-                        Casual photo or nature image
-                      </p>
-                    </div>
-                  </div>
+                <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden shadow-xl shadow-sand/20">
+                  <Image
+                    src={greenTrail}
+                    alt="Green forest trail in soft light"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                  />
                 </div>
               </div>
 
