@@ -9,31 +9,31 @@ export type SitemapGeneratedEntry = {
 export const sitemapGeneratedEntries: SitemapGeneratedEntry[] = [
   {
     "pathname": "/",
-    "lastModified": "2026-03-28T10:08:14-07:00",
+    "lastModified": "2026-03-28T10:23:10-07:00",
     "priority": 1,
     "changeFrequency": "monthly"
   },
   {
     "pathname": "/about",
-    "lastModified": "2026-03-28T10:08:14-07:00",
+    "lastModified": "2026-03-28T10:23:10-07:00",
     "priority": 0.7,
     "changeFrequency": "monthly"
   },
   {
     "pathname": "/services",
-    "lastModified": "2026-03-28T10:08:14-07:00",
+    "lastModified": "2026-03-28T10:23:10-07:00",
     "priority": 0.8,
     "changeFrequency": "monthly"
   },
   {
     "pathname": "/faqs",
-    "lastModified": "2026-03-28T10:08:14-07:00",
+    "lastModified": "2026-03-28T10:23:10-07:00",
     "priority": 0.7,
     "changeFrequency": "monthly"
   },
   {
     "pathname": "/contact",
-    "lastModified": "2026-03-28T10:08:14-07:00",
+    "lastModified": "2026-03-28T10:23:10-07:00",
     "priority": 0.7,
     "changeFrequency": "monthly"
   }

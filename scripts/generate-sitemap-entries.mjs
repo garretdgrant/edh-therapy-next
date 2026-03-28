@@ -12,34 +12,49 @@ const generatedOutputPath = path.join(
   "sitemap.generated.ts",
 );
 
+const sharedRouteSourcePaths = [
+  "app/layout.tsx",
+  "app/globals.css",
+  "app/components/Header.tsx",
+  "app/components/HeaderMobileMenu.tsx",
+  "app/components/HeaderScrollState.tsx",
+  "app/components/Footer.tsx",
+];
+
+// Intentionally exclude /contact/thank-you because it is a post-submission
+// utility page and should not be indexed.
 const routeDefinitions = [
   {
     pathname: "/",
-    sourcePath: "app/page.tsx",
+    sourcePaths: ["app/page.tsx", ...sharedRouteSourcePaths],
     priority: 1,
     changeFrequency: "monthly",
   },
   {
     pathname: "/about",
-    sourcePath: "app/about/page.tsx",
+    sourcePaths: ["app/about/page.tsx", ...sharedRouteSourcePaths],
     priority: 0.7,
     changeFrequency: "monthly",
   },
   {
     pathname: "/services",
-    sourcePath: "app/services/page.tsx",
+    sourcePaths: ["app/services/page.tsx", ...sharedRouteSourcePaths],
     priority: 0.8,
     changeFrequency: "monthly",
   },
   {
     pathname: "/faqs",
-    sourcePath: "app/faqs/page.tsx",
+    sourcePaths: ["app/faqs/page.tsx", ...sharedRouteSourcePaths],
     priority: 0.7,
     changeFrequency: "monthly",
   },
   {
     pathname: "/contact",
-    sourcePath: "app/contact/page.tsx",
+    sourcePaths: [
+      "app/contact/page.tsx",
+      "app/components/ContactForm.tsx",
+      ...sharedRouteSourcePaths,
+    ],
     priority: 0.7,
     changeFrequency: "monthly",
   },
@@ -83,9 +98,15 @@ function getLastModified(sourcePath) {
   return statSync(absoluteSourcePath).mtime.toISOString();
 }
 
+function getLatestLastModified(sourcePaths) {
+  return sourcePaths
+    .map((sourcePath) => getLastModified(sourcePath))
+    .sort((left, right) => Date.parse(right) - Date.parse(left))[0];
+}
+
 const sitemapEntries = routeDefinitions.map((route) => ({
   pathname: route.pathname,
-  lastModified: getLastModified(route.sourcePath),
+  lastModified: getLatestLastModified(route.sourcePaths),
   priority: route.priority,
   changeFrequency: route.changeFrequency,
 }));
