@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import greenTrail from "../assets/About/green-trail.webp";
 import officeCorner from "../assets/About/office-corner.webp";
+import { therapistSeatedStoolPortrait } from "../headshots";
 
 export default function About() {
   return (
@@ -86,38 +87,26 @@ export default function About() {
                 </div>
               </div>
 
-              {/* Right Content - Photo Placeholder */}
+              {/* Right Content - Therapist Portrait */}
               <div className="relative opacity-0-initial animate-scale-in delay-300">
                 {/* Organic decorative elements - outside overflow container */}
                 <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-sage-soft/40 blur-sm" />
                 <div className="absolute -bottom-4 -left-4 w-24 h-24 rounded-full bg-terracotta-soft/30 blur-sm" />
 
-                <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-gradient-to-br from-linen to-cream-dark shadow-2xl shadow-sand/30">
+                <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-sand/30">
                   {/* Decorative frame */}
                   <div className="absolute inset-4 border border-sand/50 rounded-[1.5rem]" />
 
-                  {/* Photo placeholder with elegant styling */}
-                  <div className="absolute inset-8 rounded-[1rem] bg-gradient-to-br from-sage-soft/20 to-terracotta-soft/20 flex items-center justify-center">
-                    <div className="text-center space-y-4 p-8">
-                      <div className="w-24 h-24 mx-auto rounded-full bg-cream flex items-center justify-center">
-                        <svg
-                          className="w-12 h-12 text-sand"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1.5}
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                          />
-                        </svg>
-                      </div>
-                      <p className="text-warm-gray text-sm">
-                        Professional headshot
-                      </p>
-                    </div>
+                  <div className="absolute inset-8 rounded-[1rem] overflow-hidden">
+                    <Image
+                      src={therapistSeatedStoolPortrait}
+                      alt="Therapist seated on a stool in a bright studio"
+                      fill
+                      unoptimized
+                      priority
+                      className="object-cover object-[center_top]"
+                      sizes="(min-width: 1024px) 40vw, 80vw"
+                    />
                   </div>
                 </div>
               </div>

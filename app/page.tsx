@@ -2,9 +2,9 @@ import Image from "next/image";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import cozyChair from "./assets/Home/cozy_chair.webp";
-import meagsy from "./assets/Home/meagsy.webp";
 import laptopCouch from "./assets/Home/laptop-couch.webp";
 import glassesDesk from "./assets/Home/glasses-desk.webp";
+import { therapistDeskPortrait } from "./headshots";
 
 export default function Home() {
   const navLinks = [
@@ -95,7 +95,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Content - Photo Placeholder */}
+            {/* Right Content - Therapist Portrait */}
             <div className="relative opacity-0-initial animate-scale-in delay-300">
               {/* Organic decorative elements - outside overflow container */}
               <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-sage-soft/40 blur-sm" />
@@ -105,13 +105,15 @@ export default function Home() {
                 {/* Decorative frame */}
                 <div className="absolute inset-4 border border-sand/50 rounded-[1.5rem]" />
 
-                {/* Photo placeholder with elegant styling */}
+                {/* Therapist portrait */}
                 <div className="absolute inset-8 rounded-[1rem] overflow-hidden">
                   <Image
-                    src={meagsy}
-                    alt="Therapist portrait in a calm setting"
+                    src={therapistDeskPortrait}
+                    alt="Therapist smiling at a desk during an online session"
                     fill
-                    className="object-cover"
+                    unoptimized
+                    priority
+                    className="object-cover object-center"
                     sizes="(min-width: 1024px) 40vw, 80vw"
                   />
                 </div>

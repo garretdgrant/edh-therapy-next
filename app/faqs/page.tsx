@@ -1,8 +1,7 @@
-"use client";
-
-import { useState } from "react";
+import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { therapistStandingPortrait } from "../headshots";
 
 const faqs = [
   {
@@ -87,24 +86,34 @@ const faqs = [
   },
 ];
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.flatMap((category) =>
+    category.questions.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  ),
+};
+
 export default function FAQs() {
-  const [openItems, setOpenItems] = useState<string[]>([]);
-
-  const toggleItem = (question: string) => {
-    setOpenItems((prev) =>
-      prev.includes(question)
-        ? prev.filter((q) => q !== question)
-        : [...prev, question],
-    );
-  };
-
   return (
     <div className="min-h-screen bg-cream">
       <Header />
 
       <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+
         {/* Hero Section */}
-        <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+        <section className="relative min-h-[85vh] flex items-center overflow-hidden">
           {/* Organic Background Shapes */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-20 -right-32 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-sage-soft/30 to-transparent animate-float" />
@@ -121,51 +130,75 @@ export default function FAQs() {
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20">
-            <div className="max-w-3xl mx-auto text-center space-y-8">
-              <div className="space-y-6 opacity-0-initial animate-fade-in">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-sage-soft/30 rounded-full">
-                  <span className="w-2 h-2 rounded-full bg-sage animate-pulse" />
-                  <span className="text-sm text-charcoal-soft tracking-wide">
-                    Questions & Answers
-                  </span>
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8">
+                <div className="space-y-6 opacity-0-initial animate-fade-in">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-sage-soft/30 rounded-full">
+                    <span className="w-2 h-2 rounded-full bg-sage animate-pulse" />
+                    <span className="text-sm text-charcoal-soft tracking-wide">
+                      Questions & Answers
+                    </span>
+                  </div>
+
+                  <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-charcoal leading-[1.1] tracking-tight">
+                    Frequently
+                    <br />
+                    <span className="font-medium italic text-charcoal-soft">
+                      Asked
+                    </span>
+                    <br />
+                    Questions
+                  </h1>
                 </div>
 
-                <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-charcoal leading-[1.1] tracking-tight">
-                  Frequently
-                  <br />
-                  <span className="font-medium italic text-charcoal-soft">
-                    Asked
-                  </span>{" "}
-                  Questions
-                </h1>
+                <p className="text-lg text-warm-gray leading-relaxed max-w-xl opacity-0-initial animate-fade-in-up delay-200">
+                  Find answers to common questions about therapy, the process,
+                  and what to expect. If you don&apos;t see your question here,
+                  please reach out.
+                </p>
+
+                <div className="opacity-0-initial animate-fade-in-up delay-400">
+                  <a
+                    href="/contact"
+                    className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-charcoal text-cream rounded-full hover:bg-charcoal-soft transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                  >
+                    <span>Still have questions?</span>
+                    <svg
+                      className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </a>
+                </div>
               </div>
 
-              <p className="text-lg text-warm-gray leading-relaxed max-w-2xl mx-auto opacity-0-initial animate-fade-in-up delay-200">
-                Find answers to common questions about therapy, the process, and
-                what to expect. If you don&apos;t see your question here, please
-                reach out.
-              </p>
+              <div className="relative opacity-0-initial animate-scale-in delay-300">
+                <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-sage-soft/40 blur-sm" />
+                <div className="absolute -bottom-4 -left-4 w-24 h-24 rounded-full bg-terracotta-soft/30 blur-sm" />
 
-              <div className="opacity-0-initial animate-fade-in-up delay-400">
-                <a
-                  href="/contact"
-                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-charcoal text-cream rounded-full hover:bg-charcoal-soft transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
-                >
-                  <span>Still have questions?</span>
-                  <svg
-                    className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-sand/30">
+                  <div className="absolute inset-4 border border-sand/50 rounded-[1.5rem]" />
+
+                  <div className="absolute inset-8 rounded-[1rem] overflow-hidden">
+                    <Image
+                      src={therapistStandingPortrait}
+                      alt="Therapist standing in a calm studio space"
+                      fill
+                      unoptimized
+                      priority
+                      className="object-cover object-[center_top]"
+                      sizes="(min-width: 1024px) 40vw, 80vw"
                     />
-                  </svg>
-                </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -201,25 +234,17 @@ export default function FAQs() {
 
                   {/* Questions */}
                   <div className="space-y-4 pl-16">
-                    {category.questions.map((item) => {
-                      const isOpen = openItems.includes(item.question);
-                      return (
-                        <div
-                          key={item.question}
-                          className="group bg-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
-                        >
-                          <button
-                            onClick={() => toggleItem(item.question)}
-                            className="w-full p-6 flex items-start justify-between gap-4 text-left"
-                          >
-                            <span className="font-medium text-charcoal group-hover:text-charcoal-soft transition-colors duration-300">
+                    {category.questions.map((item) => (
+                      <article
+                        key={item.question}
+                        className="group bg-cream rounded-2xl overflow-hidden shadow-md"
+                      >
+                        <div className="p-6">
+                          <div className="flex items-start justify-between gap-4 text-left">
+                            <h3 className="font-medium text-charcoal group-hover:text-charcoal-soft transition-colors duration-300">
                               {item.question}
-                            </span>
-                            <div
-                              className={`w-8 h-8 rounded-full bg-sage-soft/30 flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-                                isOpen ? "bg-sage-soft/50 rotate-180" : ""
-                              }`}
-                            >
+                            </h3>
+                            <div className="w-8 h-8 rounded-full bg-sage-soft/50 flex items-center justify-center flex-shrink-0 rotate-180">
                               <svg
                                 className="w-4 h-4 text-charcoal-soft"
                                 fill="none"
@@ -234,23 +259,15 @@ export default function FAQs() {
                                 />
                               </svg>
                             </div>
-                          </button>
-                          <div
-                            className={`overflow-hidden transition-all duration-300 ${
-                              isOpen ? "max-h-96" : "max-h-0"
-                            }`}
-                          >
-                            <div className="px-6 pb-6">
-                              <div className="pt-2 border-t border-sand/30">
-                                <p className="text-warm-gray leading-relaxed pt-4">
-                                  {item.answer}
-                                </p>
-                              </div>
-                            </div>
+                          </div>
+                          <div className="pt-2 border-t border-sand/30 mt-6">
+                            <p className="text-warm-gray leading-relaxed pt-4">
+                              {item.answer}
+                            </p>
                           </div>
                         </div>
-                      );
-                    })}
+                      </article>
+                    ))}
                   </div>
                 </div>
               ))}

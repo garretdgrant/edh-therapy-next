@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import journalDesk from "../assets/Services/journal-desk.webp";
+import { therapistChairPortrait } from "../headshots";
 
 export default function Services() {
   return (
@@ -85,7 +85,7 @@ export default function Services() {
                 </div>
               </div>
 
-              {/* Right Content - Photo Placeholder */}
+              {/* Right Content - Therapist Portrait */}
               <div className="relative opacity-0-initial animate-scale-in delay-300">
                 {/* Organic decorative elements - outside overflow container */}
                 <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-sage-soft/40 blur-sm" />
@@ -95,13 +95,15 @@ export default function Services() {
                   {/* Decorative frame */}
                   <div className="absolute inset-4 border border-sand/50 rounded-[1.5rem]" />
 
-                  {/* Photo placeholder */}
+                  {/* Therapist portrait */}
                   <div className="absolute inset-8 rounded-[1rem] overflow-hidden">
                     <Image
-                      src={journalDesk}
-                      alt="Journal and desk setup for reflection"
+                      src={therapistChairPortrait}
+                      alt="Therapist seated in a calm studio space"
                       fill
-                      className="object-cover"
+                      unoptimized
+                      priority
+                      className="object-cover object-[center_top]"
                       sizes="(min-width: 1024px) 40vw, 80vw"
                     />
                   </div>

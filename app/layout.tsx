@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -17,6 +18,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: "EDH Therapy | Compassionate Therapy in El Dorado Hills, CA",
   description:
     "Supporting individuals and couples through life transitions, anxiety, relationship challenges, and emotional overwhelm. Online therapy serving clients throughout California.",
