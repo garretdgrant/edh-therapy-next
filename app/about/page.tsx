@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -10,6 +11,14 @@ import {
   getPersonId,
   getProfessionalServiceId,
 } from "@/lib/schema";
+import { buildPageMetadata } from "@/lib/page-metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "About Meagan Murray, AMFT | EDH Therapy",
+  description:
+    "Learn more about Meagan Murray, AMFT, her background, values, training, and collaborative approach to therapy for individuals, couples, and families in California.",
+  pathname: "/about",
+});
 
 const aboutPageUrl = buildPageUrl("/about");
 const personId = getPersonId();

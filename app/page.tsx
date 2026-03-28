@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -5,6 +6,14 @@ import cozyChair from "./assets/Home/cozy_chair.webp";
 import laptopCouch from "./assets/Home/laptop-couch.webp";
 import glassesDesk from "./assets/Home/glasses-desk.webp";
 import { therapistDeskPortrait } from "./headshots";
+import { buildPageMetadata } from "@/lib/page-metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Compassionate Therapy in El Dorado Hills, CA | EDH Therapy",
+  description:
+    "Compassionate online therapy for individuals and couples navigating anxiety, life transitions, relationship challenges, and emotional overwhelm throughout California.",
+  pathname: "/",
+});
 
 export default function Home() {
   return (

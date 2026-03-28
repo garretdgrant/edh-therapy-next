@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -7,6 +8,14 @@ import {
   buildPageUrl,
   getProfessionalServiceId,
 } from "@/lib/schema";
+import { buildPageMetadata } from "@/lib/page-metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Therapy FAQs | EDH Therapy",
+  description:
+    "Read common questions about therapy sessions, online appointments, fees, insurance, and getting started with EDH Therapy in California.",
+  pathname: "/faqs",
+});
 
 const faqs = [
   {

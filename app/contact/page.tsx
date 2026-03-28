@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ContactForm from "../components/ContactForm";
@@ -6,6 +7,14 @@ import {
   buildPageUrl,
   getProfessionalServiceId,
 } from "@/lib/schema";
+import { buildPageMetadata } from "@/lib/page-metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Contact EDH Therapy | Free 15-Minute Consultation",
+  description:
+    "Contact EDH Therapy to book a free 15-minute consultation, ask questions, or get started with online therapy throughout California.",
+  pathname: "/contact",
+});
 
 const contactPageUrl = buildPageUrl("/contact");
 const professionalServiceId = getProfessionalServiceId();

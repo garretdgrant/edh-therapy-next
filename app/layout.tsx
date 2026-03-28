@@ -21,10 +21,16 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
-  title: "EDH Therapy | Compassionate Therapy in El Dorado Hills, CA",
+  title: "EDH Therapy",
   description:
     "Supporting individuals and couples through life transitions, anxiety, relationship challenges, and emotional overwhelm. Online therapy serving clients throughout California.",
   openGraph: {
+    type: "website",
+    url: getSiteUrl(),
+    siteName: "EDH Therapy",
+    title: "EDH Therapy",
+    description:
+      "Supporting individuals and couples through life transitions, anxiety, relationship challenges, and emotional overwhelm. Online therapy serving clients throughout California.",
     images: [
       {
         url: "/edh-therapy-og-image.jpg",
@@ -36,6 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    title: "EDH Therapy",
+    description:
+      "Supporting individuals and couples through life transitions, anxiety, relationship challenges, and emotional overwhelm. Online therapy serving clients throughout California.",
     images: ["/edh-therapy-og-image.jpg"],
   },
 };

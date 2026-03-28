@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -7,6 +8,14 @@ import {
   buildPageUrl,
   getProfessionalServiceId,
 } from "@/lib/schema";
+import { buildPageMetadata } from "@/lib/page-metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Therapy Services in California | EDH Therapy",
+  description:
+    "Explore individual therapy, couples therapy, and family therapy with EDH Therapy, plus evidence-based approaches, online sessions, and fee details for clients throughout California.",
+  pathname: "/services",
+});
 
 const servicesPageUrl = buildPageUrl("/services");
 const professionalServiceId = getProfessionalServiceId();
