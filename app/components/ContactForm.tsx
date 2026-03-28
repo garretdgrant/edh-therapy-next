@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
 type ContactFormState = {
@@ -23,6 +23,7 @@ const initialFormState: ContactFormState = {
 
 export default function ContactForm() {
   const router = useRouter();
+  const submittingRef = useRef(false);
   const [formData, setFormData] = useState(initialFormState);
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,6 +43,11 @@ export default function ContactForm() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (submittingRef.current) {
+      return;
+    }
+
+    submittingRef.current = true;
     setIsSubmitting(true);
     setSubmitError(null);
 
@@ -73,12 +79,13 @@ export default function ContactForm() {
           : "Something went wrong. Please try again.",
       );
     } finally {
+      submittingRef.current = false;
       setIsSubmitting(false);
     }
   };
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit}>
+    <form className="space-y-6" onSubmit={handleSubmit} aria-busy={isSubmitting}>
       <div style={{ display: "none" }}>
         <label htmlFor="company">Company</label>
         <input
@@ -89,6 +96,7 @@ export default function ContactForm() {
           onChange={handleChange}
           autoComplete="off"
           tabIndex={-1}
+          disabled={isSubmitting}
         />
       </div>
 
@@ -110,6 +118,7 @@ export default function ContactForm() {
           onFocus={() => setFocusedField("name")}
           onBlur={() => setFocusedField(null)}
           className="w-full rounded-xl border-2 border-sand/40 bg-transparent px-4 py-4 text-charcoal focus:border-sage focus:ring-0 outline-none transition-all duration-300 hover:border-sand"
+          disabled={isSubmitting}
           required
         />
       </div>
@@ -132,6 +141,7 @@ export default function ContactForm() {
           onFocus={() => setFocusedField("email")}
           onBlur={() => setFocusedField(null)}
           className="w-full rounded-xl border-2 border-sand/40 bg-transparent px-4 py-4 text-charcoal focus:border-sage focus:ring-0 outline-none transition-all duration-300 hover:border-sand"
+          disabled={isSubmitting}
           required
         />
       </div>
@@ -154,6 +164,7 @@ export default function ContactForm() {
           onFocus={() => setFocusedField("phone")}
           onBlur={() => setFocusedField(null)}
           className="w-full rounded-xl border-2 border-sand/40 bg-transparent px-4 py-4 text-charcoal focus:border-sage focus:ring-0 outline-none transition-all duration-300 hover:border-sand"
+          disabled={isSubmitting}
           required
         />
       </div>
@@ -167,6 +178,7 @@ export default function ContactForm() {
           value={formData.clientType}
           onChange={handleChange}
           className="w-full rounded-xl border-2 border-sand/40 bg-transparent px-4 py-3 text-charcoal focus:border-sage focus:ring-0 outline-none transition-all duration-300 hover:border-sand appearance-none cursor-pointer"
+          disabled={isSubmitting}
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%238a8279'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
             backgroundRepeat: "no-repeat",
@@ -201,6 +213,7 @@ export default function ContactForm() {
           onBlur={() => setFocusedField(null)}
           rows={4}
           className="w-full rounded-xl border-2 border-sand/40 bg-transparent px-4 py-4 text-charcoal focus:border-sage focus:ring-0 outline-none transition-all duration-300 hover:border-sand resize-none"
+          disabled={isSubmitting}
           required
         />
       </div>
@@ -208,7 +221,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="group w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-charcoal text-cream rounded-xl hover:bg-charcoal-soft transition-all duration-300 hover:shadow-xl text-lg font-medium"
+        className="group w-full inline-flex items-center justify-center gap-3 rounded-xl bg-charcoal px-8 py-4 text-lg font-medium text-cream transition-all duration-300 hover:bg-charcoal-soft hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:bg-charcoal"
       >
         <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
         <svg
