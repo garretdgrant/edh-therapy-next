@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { getSiteUrl } from "./site-url";
 
-const DEFAULT_OG_IMAGE_PATH = "/edh-therapy-og-image.jpg";
+export const SITE_NAME = "EDH Therapy";
+export const DEFAULT_SITE_DESCRIPTION =
+  "Supporting individuals and couples through life transitions, anxiety, relationship challenges, and emotional overwhelm. Online therapy serving clients throughout California.";
 
 type BuildPageMetadataOptions = {
   title: string;
@@ -9,12 +10,16 @@ type BuildPageMetadataOptions = {
   pathname: string;
 };
 
+function buildSocialTitle(title: string): string {
+  return title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
+}
+
 export function buildPageMetadata({
   title,
   description,
   pathname,
 }: BuildPageMetadataOptions): Metadata {
-  const url = new URL(pathname, getSiteUrl()).toString();
+  const socialTitle = buildSocialTitle(title);
 
   return {
     title,
@@ -24,24 +29,15 @@ export function buildPageMetadata({
     },
     openGraph: {
       type: "website",
-      url,
-      title,
+      url: pathname,
+      title: socialTitle,
       description,
-      siteName: "EDH Therapy",
-      images: [
-        {
-          url: DEFAULT_OG_IMAGE_PATH,
-          width: 1200,
-          height: 800,
-          alt: "EDH Therapy Open Graph image",
-        },
-      ],
+      siteName: SITE_NAME,
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: socialTitle,
       description,
-      images: [DEFAULT_OG_IMAGE_PATH],
     },
   };
 }

@@ -11,7 +11,7 @@ import {
 import { buildPageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Therapy Services in California | EDH Therapy",
+  title: "Therapy Services in California",
   description:
     "Explore individual therapy, couples therapy, and family therapy with EDH Therapy, plus evidence-based approaches, online sessions, and fee details for clients throughout California.",
   pathname: "/services",
@@ -143,7 +143,7 @@ export default function Services() {
 
                 <div className="flex flex-col sm:flex-row gap-4 opacity-0-initial animate-fade-in-up delay-400">
                   <a
-                    href="#book"
+                    href="/contact"
                     className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-charcoal text-cream rounded-full hover:bg-charcoal-soft transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
                   >
                     <span>Book a Free Consultation</span>
@@ -671,7 +671,7 @@ export default function Services() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
                 <a
-                  href="#"
+                  href="/contact"
                   className="group inline-flex items-center justify-center gap-3 px-10 py-5 bg-charcoal text-cream rounded-full hover:bg-charcoal-soft transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-lg"
                 >
                   <span>Book a Free Consultation</span>

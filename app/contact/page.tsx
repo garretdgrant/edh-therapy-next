@@ -10,7 +10,7 @@ import {
 import { buildPageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Contact EDH Therapy | Free 15-Minute Consultation",
+  title: "Contact for a Free 15-Minute Consultation",
   description:
     "Contact EDH Therapy to book a free 15-minute consultation, ask questions, or get started with online therapy throughout California.",
   pathname: "/contact",

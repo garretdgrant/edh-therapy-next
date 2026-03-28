@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 import { therapistDeskPortrait } from "./headshots";
 import { getProfessionalServiceId, getWebSiteId } from "@/lib/schema";
+import {
+  DEFAULT_SITE_DESCRIPTION,
+  SITE_NAME,
+} from "@/lib/page-metadata";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
@@ -21,31 +25,23 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
-  title: "EDH Therapy",
-  description:
-    "Supporting individuals and couples through life transitions, anxiety, relationship challenges, and emotional overwhelm. Online therapy serving clients throughout California.",
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
+  applicationName: SITE_NAME,
+  description: DEFAULT_SITE_DESCRIPTION,
   openGraph: {
     type: "website",
-    url: getSiteUrl(),
-    siteName: "EDH Therapy",
-    title: "EDH Therapy",
-    description:
-      "Supporting individuals and couples through life transitions, anxiety, relationship challenges, and emotional overwhelm. Online therapy serving clients throughout California.",
-    images: [
-      {
-        url: "/edh-therapy-og-image.jpg",
-        width: 1200,
-        height: 800,
-        alt: "EDH Therapy Open Graph image",
-      },
-    ],
+    siteName: SITE_NAME,
+    locale: "en_US",
+    title: SITE_NAME,
+    description: DEFAULT_SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "EDH Therapy",
-    description:
-      "Supporting individuals and couples through life transitions, anxiety, relationship challenges, and emotional overwhelm. Online therapy serving clients throughout California.",
-    images: ["/edh-therapy-og-image.jpg"],
+    title: SITE_NAME,
+    description: DEFAULT_SITE_DESCRIPTION,
   },
 };
 
@@ -58,9 +54,8 @@ const webSiteSchema = {
   "@type": "WebSite",
   "@id": webSiteId,
   url: siteUrl,
-  name: "EDH Therapy",
-  description:
-    "Supporting individuals and couples through life transitions, anxiety, relationship challenges, and emotional overwhelm. Online therapy serving clients throughout California.",
+  name: SITE_NAME,
+  description: DEFAULT_SITE_DESCRIPTION,
   publisher: {
     "@id": professionalServiceId,
   },
@@ -70,7 +65,7 @@ const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": professionalServiceId,
-  name: "EDH Therapy",
+  name: SITE_NAME,
   url: siteUrl,
   image: new URL(therapistDeskPortrait, siteUrl).toString(),
   description:

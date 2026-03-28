@@ -53,7 +53,7 @@ export default function HeaderMobileMenu({ navLinks }: HeaderMobileMenuProps) {
             </Link>
           ))}
           <a
-            href="#book"
+            href="/contact"
             className="mt-2 px-6 py-3 bg-charcoal text-cream text-center rounded-full hover:bg-charcoal-soft transition-all duration-300"
             onClick={() => setMobileMenuOpen(false)}
           >

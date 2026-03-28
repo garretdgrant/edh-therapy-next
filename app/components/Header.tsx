@@ -51,7 +51,7 @@ export default function Header() {
               </Link>
             ))}
             <a
-              href="#book"
+              href="/contact"
               className="ml-4 px-6 py-2.5 bg-charcoal text-cream text-sm rounded-full hover:bg-charcoal-soft transition-all duration-300 hover:shadow-lg"
             >
               Book Consultation

@@ -11,7 +11,7 @@ import {
 import { buildPageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Therapy FAQs | EDH Therapy",
+  title: "Therapy FAQs",
   description:
     "Read common questions about therapy sessions, online appointments, fees, insurance, and getting started with EDH Therapy in California.",
   pathname: "/faqs",
