@@ -245,7 +245,19 @@ export default function ContactForm() {
       </p>
 
       {submitError ? (
-        <p className="text-sm text-terracotta text-center">{submitError}</p>
+        <div className="space-y-2 text-center">
+          <p className="text-sm text-terracotta">{submitError}</p>
+          <p className="text-sm text-warm-gray">
+            If this issue continues, please call{" "}
+            <a
+              href="tel:9164712562"
+              className="font-medium text-charcoal transition-colors duration-300 hover:text-charcoal-soft"
+            >
+              (916) 471-2562
+            </a>{" "}
+            and let me know your message did not go through.
+          </p>
+        </div>
       ) : null}
     </form>
   );

@@ -1,4 +1,7 @@
+import Image from "next/image";
+
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
@@ -67,23 +70,50 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="pt-8 border-t border-charcoal-soft/50 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sand text-sm">
-            © {new Date().getFullYear()} EDH Therapy. All rights reserved.
-          </p>
-          <div className="flex gap-6 text-sm text-sand">
-            <a
-              href="/privacy"
-              className="hover:text-cream transition-colors duration-300"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="/terms"
-              className="hover:text-cream transition-colors duration-300"
-            >
-              Terms of Service
-            </a>
+        <div className="pt-8 border-t border-charcoal-soft/50">
+          <div className="flex flex-col items-center gap-4 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center">
+            <p className="text-sand text-sm md:justify-self-start">
+              © {currentYear} EDH Therapy. All rights reserved.
+            </p>
+
+            <div className="md:justify-self-center">
+              <a
+                href="https://www.edcwebdesign.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Website by EDC Web Design"
+                className="group flex items-center gap-3 rounded-xl border border-cream/10 bg-cream/5 px-4 py-3 transition-colors duration-300 hover:border-cream/20 hover:bg-cream/8"
+              >
+                <span className="text-xs uppercase tracking-[0.24em] text-sand/80 transition-colors duration-300 group-hover:text-cream">
+                  Website by
+                </span>
+                <Image
+                  src="https://www.edcwebdesign.com/logo.png"
+                  alt="EDC Web Design"
+                  width={180}
+                  height={46}
+                  sizes="180px"
+                  quality={80}
+                  unoptimized
+                  className="h-11 w-auto opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+                />
+              </a>
+            </div>
+
+            <div className="flex gap-6 text-sm text-sand md:justify-self-end">
+              <a
+                href="/privacy"
+                className="hover:text-cream transition-colors duration-300"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="/terms"
+                className="hover:text-cream transition-colors duration-300"
+              >
+                Terms of Service
+              </a>
+            </div>
           </div>
         </div>
       </div>

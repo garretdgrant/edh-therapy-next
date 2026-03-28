@@ -3,7 +3,6 @@ import HeaderMobileMenu from "./HeaderMobileMenu";
 import HeaderScrollState from "./HeaderScrollState";
 
 const navLinks = [
-  { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "FAQs", href: "/faqs" },
