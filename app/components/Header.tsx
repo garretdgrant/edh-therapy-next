@@ -1,38 +1,26 @@
-"use client";
+import Link from "next/link";
+import HeaderMobileMenu from "./HeaderMobileMenu";
+import HeaderScrollState from "./HeaderScrollState";
 
-import { useState, useEffect } from "react";
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "FAQs", href: "/faqs" },
+  { name: "Contact", href: "/contact" },
+];
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "FAQs", href: "/faqs" },
-    { name: "Contact", href: "/contact" },
-  ];
-
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-cream/95 backdrop-blur-md shadow-sm py-4"
-          : "bg-transparent py-6"
-      }`}
+      id="site-header"
+      className="fixed top-0 left-0 right-0 z-50 bg-transparent py-6 transition-all duration-500"
     >
+      <HeaderScrollState targetId="site-header" />
+
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <a href="/" className="group flex items-center gap-3">
+          <Link href="/" className="group flex items-center gap-3">
             <div className="relative">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sage to-sage-soft flex items-center justify-center">
                 <span className="font-serif text-lg font-semibold text-charcoal">
@@ -49,18 +37,18 @@ export default function Header() {
                 El Dorado Hills
               </span>
             </div>
-          </a>
+          </Link>
 
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 className="relative text-charcoal-soft hover:text-charcoal transition-colors duration-300 text-sm tracking-wide group"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-sage group-hover:w-full transition-all duration-300" />
-              </a>
+              </Link>
             ))}
             <a
               href="#book"
@@ -70,45 +58,7 @@ export default function Header() {
             </a>
           </div>
 
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden relative w-8 h-8 flex flex-col justify-center items-center gap-1.5"
-            aria-label="Toggle menu"
-          >
-            <span
-              className={`w-6 h-px bg-charcoal transition-all duration-300 ${mobileMenuOpen ? "rotate-45 translate-y-2" : ""}`}
-            />
-            <span
-              className={`w-6 h-px bg-charcoal transition-all duration-300 ${mobileMenuOpen ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`w-6 h-px bg-charcoal transition-all duration-300 ${mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
-            />
-          </button>
-        </div>
-      </div>
-
-      <div
-        className={`md:hidden absolute top-full left-0 right-0 bg-cream/98 backdrop-blur-lg shadow-lg transition-all duration-300 overflow-hidden ${
-          mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="px-6 py-6 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-charcoal-soft hover:text-charcoal transition-colors duration-300 py-2 border-b border-sand/30"
-            >
-              {link.name}
-            </a>
-          ))}
-          <a
-            href="#book"
-            className="mt-2 px-6 py-3 bg-charcoal text-cream text-center rounded-full hover:bg-charcoal-soft transition-all duration-300"
-          >
-            Book Consultation
-          </a>
+          <HeaderMobileMenu navLinks={navLinks} />
         </div>
       </div>
     </nav>

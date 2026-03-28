@@ -4,6 +4,64 @@ import Footer from "../components/Footer";
 import greenTrail from "../assets/About/green-trail.webp";
 import officeCorner from "../assets/About/office-corner.webp";
 import { therapistSeatedStoolPortrait } from "../headshots";
+import {
+  buildBreadcrumbSchema,
+  buildPageUrl,
+  getPersonId,
+  getProfessionalServiceId,
+} from "@/lib/schema";
+
+const aboutPageUrl = buildPageUrl("/about");
+const personId = getPersonId();
+const professionalServiceId = getProfessionalServiceId();
+
+const aboutBreadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", pathname: "/" },
+  { name: "About", pathname: "/about" },
+]);
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": personId,
+  name: "Meagan Murray",
+  honorificSuffix: "AMFT",
+  jobTitle: "Associate Marriage & Family Therapist",
+  url: aboutPageUrl,
+  image: buildPageUrl(therapistSeatedStoolPortrait),
+  email: "contact@edhtherapy.com",
+  telephone: "+1-916-471-2562",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "El Dorado Hills",
+    addressRegion: "CA",
+    addressCountry: "US",
+  },
+  description:
+    "Meagan Murray, AMFT, offers collaborative therapy to individuals, couples, and families seeking clarity, emotional safety, and meaningful change.",
+  worksFor: {
+    "@id": professionalServiceId,
+  },
+  mainEntityOfPage: aboutPageUrl,
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "University of San Francisco",
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      name: "University of California, Davis",
+    },
+  ],
+  knowsAbout: [
+    "Cognitive Behavioral Therapy",
+    "Emotionally Focused Therapy",
+    "Mindfulness-Based Therapy",
+    "Narrative Therapy",
+    "Family Systems",
+    "Strength-Based Therapy",
+  ],
+};
 
 export default function About() {
   return (
@@ -11,6 +69,19 @@ export default function About() {
       <Header />
 
       <main className="relative">
+        <script
+          id="about-breadcrumb-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(aboutBreadcrumbSchema),
+          }}
+        />
+        <script
+          id="about-person-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+
         {/* Hero Section */}
         <section className="relative min-h-[85vh] flex items-center overflow-hidden">
           {/* Organic Background Shapes */}
@@ -44,7 +115,7 @@ export default function About() {
                     Hello, I&apos;m
                     <br />
                     <span className="font-medium italic text-charcoal-soft">
-                      [Therapist Name]
+                      Meagan Murray
                     </span>
                     <br />
                     AMFT

@@ -7,14 +7,6 @@ import glassesDesk from "./assets/Home/glasses-desk.webp";
 import { therapistDeskPortrait } from "./headshots";
 
 export default function Home() {
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "FAQs", href: "/faqs" },
-    { name: "Contact", href: "/contact" },
-  ];
-
   return (
     <div className="min-h-screen bg-cream">
       <Header />

@@ -2,6 +2,67 @@ import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { therapistChairPortrait } from "../headshots";
+import {
+  buildBreadcrumbSchema,
+  buildPageUrl,
+  getProfessionalServiceId,
+} from "@/lib/schema";
+
+const servicesPageUrl = buildPageUrl("/services");
+const professionalServiceId = getProfessionalServiceId();
+
+const servicesBreadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", pathname: "/" },
+  { name: "Services", pathname: "/services" },
+]);
+
+const serviceListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Therapy Services",
+  url: servicesPageUrl,
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      item: {
+        "@type": "Service",
+        name: "Individual Therapy",
+        description:
+          "One-on-one support for anxiety, depression, self-esteem, identity exploration, and navigating life transitions.",
+        provider: {
+          "@id": professionalServiceId,
+        },
+      },
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      item: {
+        "@type": "Service",
+        name: "Couples Therapy",
+        description:
+          "Support for communication, conflict resolution, and deeper emotional connection in relationships.",
+        provider: {
+          "@id": professionalServiceId,
+        },
+      },
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      item: {
+        "@type": "Service",
+        name: "Family Therapy",
+        description:
+          "Support for family dynamics, communication patterns, and rebuilding trust within the family system.",
+        provider: {
+          "@id": professionalServiceId,
+        },
+      },
+    },
+  ],
+};
 
 export default function Services() {
   return (
@@ -9,6 +70,21 @@ export default function Services() {
       <Header />
 
       <main>
+        <script
+          id="services-breadcrumb-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(servicesBreadcrumbSchema),
+          }}
+        />
+        <script
+          id="services-itemlist-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(serviceListSchema),
+          }}
+        />
+
         {/* Hero Section */}
         <section className="relative min-h-[85vh] flex items-center overflow-hidden">
           {/* Organic Background Shapes */}

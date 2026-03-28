@@ -1,34 +1,53 @@
-"use client";
-
-import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import ContactForm from "../components/ContactForm";
+import {
+  buildBreadcrumbSchema,
+  buildPageUrl,
+  getProfessionalServiceId,
+} from "@/lib/schema";
+
+const contactPageUrl = buildPageUrl("/contact");
+const professionalServiceId = getProfessionalServiceId();
+
+const contactBreadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", pathname: "/" },
+  { name: "Contact", pathname: "/contact" },
+]);
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact EDH Therapy",
+  url: contactPageUrl,
+  description:
+    "Contact EDH Therapy to schedule a free 15-minute consultation for online therapy throughout California.",
+  mainEntity: {
+    "@id": professionalServiceId,
+  },
+};
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    contactPreference: "email",
-    clientType: "",
-    message: "",
-  });
-
-  const [focusedField, setFocusedField] = useState<string | null>(null);
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   return (
     <div className="min-h-screen bg-cream">
       <Header />
 
       <main>
+        <script
+          id="contact-breadcrumb-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(contactBreadcrumbSchema),
+          }}
+        />
+        <script
+          id="contact-page-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(contactPageSchema),
+          }}
+        />
+
         {/* Hero Section */}
         <section className="relative min-h-[70vh] flex items-center overflow-hidden">
           {/* Organic Background Shapes */}
@@ -177,187 +196,7 @@ export default function Contact() {
                     </p>
                   </div>
 
-                  {/* Form */}
-                  <form className="space-y-6">
-                    {/* Name Field */}
-                    <div className="relative">
-                      <label
-                        className={`absolute left-4 transition-all duration-300 pointer-events-none ${
-                          focusedField === "name" || formData.name
-                            ? "-top-2.5 text-xs bg-cream px-2 text-sage"
-                            : "top-4 text-warm-gray"
-                        }`}
-                      >
-                        Your Name *
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField("name")}
-                        onBlur={() => setFocusedField(null)}
-                        className="w-full rounded-xl border-2 border-sand/40 bg-transparent px-4 py-4 text-charcoal focus:border-sage focus:ring-0 outline-none transition-all duration-300 hover:border-sand"
-                        required
-                      />
-                    </div>
-
-                    {/* Email Field */}
-                    <div className="relative">
-                      <label
-                        className={`absolute left-4 transition-all duration-300 pointer-events-none ${
-                          focusedField === "email" || formData.email
-                            ? "-top-2.5 text-xs bg-cream px-2 text-sage"
-                            : "top-4 text-warm-gray"
-                        }`}
-                      >
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField("email")}
-                        onBlur={() => setFocusedField(null)}
-                        className="w-full rounded-xl border-2 border-sand/40 bg-transparent px-4 py-4 text-charcoal focus:border-sage focus:ring-0 outline-none transition-all duration-300 hover:border-sand"
-                        required
-                      />
-                    </div>
-
-                    {/* Phone Field */}
-                    <div className="relative">
-                      <label
-                        className={`absolute left-4 transition-all duration-300 pointer-events-none ${
-                          focusedField === "phone" || formData.phone
-                            ? "-top-2.5 text-xs bg-cream px-2 text-sage"
-                            : "top-4 text-warm-gray"
-                        }`}
-                      >
-                        Phone Number (optional)
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField("phone")}
-                        onBlur={() => setFocusedField(null)}
-                        className="w-full rounded-xl border-2 border-sand/40 bg-transparent px-4 py-4 text-charcoal focus:border-sage focus:ring-0 outline-none transition-all duration-300 hover:border-sand"
-                      />
-                    </div>
-
-                    {/* Contact Preference & Client Type Row */}
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      {/* Contact Preference */}
-                      <div>
-                        <label className="block text-sm text-charcoal-soft mb-2">
-                          Preferred Contact Method
-                        </label>
-                        <div className="flex gap-3">
-                          {["email", "phone"].map((pref) => (
-                            <button
-                              key={pref}
-                              type="button"
-                              onClick={() =>
-                                setFormData({
-                                  ...formData,
-                                  contactPreference: pref,
-                                })
-                              }
-                              className={`flex-1 px-4 py-3 rounded-xl border-2 text-sm font-medium transition-all duration-300 ${
-                                formData.contactPreference === pref
-                                  ? "border-sage bg-sage-soft/20 text-charcoal"
-                                  : "border-sand/40 text-warm-gray hover:border-sand"
-                              }`}
-                            >
-                              {pref.charAt(0).toUpperCase() + pref.slice(1)}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Client Type */}
-                      <div>
-                        <label className="block text-sm text-charcoal-soft mb-2">
-                          I&apos;m seeking help for
-                        </label>
-                        <select
-                          name="clientType"
-                          value={formData.clientType}
-                          onChange={handleChange}
-                          className="w-full rounded-xl border-2 border-sand/40 bg-transparent px-4 py-3 text-charcoal focus:border-sage focus:ring-0 outline-none transition-all duration-300 hover:border-sand appearance-none cursor-pointer"
-                          style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%238a8279'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
-                            backgroundRepeat: "no-repeat",
-                            backgroundPosition: "right 1rem center",
-                            backgroundSize: "1rem",
-                          }}
-                        >
-                          <option value="">Select...</option>
-                          <option value="individual">
-                            Myself (Individual)
-                          </option>
-                          <option value="couple">
-                            My Relationship (Couples)
-                          </option>
-                          <option value="family">My Family</option>
-                          <option value="teen">My Teen</option>
-                          <option value="unsure">Not sure yet</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Message Field */}
-                    <div className="relative">
-                      <label
-                        className={`absolute left-4 transition-all duration-300 pointer-events-none ${
-                          focusedField === "message" || formData.message
-                            ? "-top-2.5 text-xs bg-cream px-2 text-sage"
-                            : "top-4 text-warm-gray"
-                        }`}
-                      >
-                        How can I support you? *
-                      </label>
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        onFocus={() => setFocusedField("message")}
-                        onBlur={() => setFocusedField(null)}
-                        rows={4}
-                        className="w-full rounded-xl border-2 border-sand/40 bg-transparent px-4 py-4 text-charcoal focus:border-sage focus:ring-0 outline-none transition-all duration-300 hover:border-sand resize-none"
-                        required
-                      />
-                    </div>
-
-                    {/* Submit Button */}
-                    <button
-                      type="submit"
-                      className="group w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-charcoal text-cream rounded-xl hover:bg-charcoal-soft transition-all duration-300 hover:shadow-xl text-lg font-medium"
-                    >
-                      <span>Send Message</span>
-                      <svg
-                        className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </button>
-
-                    {/* Privacy Note */}
-                    <p className="text-xs text-warm-gray text-center">
-                      Your information is kept confidential and will only be
-                      used to respond to your inquiry.
-                    </p>
-                  </form>
+                  <ContactForm />
                 </div>
 
                 {/* Decorative elements */}

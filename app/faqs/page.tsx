@@ -2,6 +2,11 @@ import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { therapistStandingPortrait } from "../headshots";
+import {
+  buildBreadcrumbSchema,
+  buildPageUrl,
+  getProfessionalServiceId,
+} from "@/lib/schema";
 
 const faqs = [
   {
@@ -86,9 +91,26 @@ const faqs = [
   },
 ];
 
+const faqPageUrl = buildPageUrl("/faqs");
+const professionalServiceId = getProfessionalServiceId();
+
+const faqBreadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", pathname: "/" },
+  { name: "FAQs", pathname: "/faqs" },
+]);
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": `${faqPageUrl}#faqpage`,
+  url: faqPageUrl,
+  name: "Frequently Asked Questions",
+  description:
+    "Answers to common questions about therapy, online sessions, fees, insurance, and what to expect from EDH Therapy.",
+  mainEntityOfPage: faqPageUrl,
+  about: {
+    "@id": professionalServiceId,
+  },
   mainEntity: faqs.flatMap((category) =>
     category.questions.map((item) => ({
       "@type": "Question",
@@ -108,6 +130,14 @@ export default function FAQs() {
 
       <main>
         <script
+          id="faqs-breadcrumb-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqBreadcrumbSchema),
+          }}
+        />
+        <script
+          id="faqs-faqpage-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
