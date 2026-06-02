@@ -495,7 +495,7 @@ function CardGrid({ section }: { section: CardGridSection }) {
         <div className="absolute top-0 right-0 h-full w-1/3 bg-gradient-to-l from-sage-soft/10 to-transparent" />
       ) : null}
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-        {section.eyebrow || section.description ? (
+        {section.eyebrow || section.description || section.title.length > 0 ? (
           <div className="mx-auto mb-16 max-w-2xl space-y-6 text-center">
             {section.eyebrow ? (
               <span className="inline-block font-serif text-lg italic text-sage">
