@@ -6,72 +6,161 @@ import { therapistChairPortrait } from "../headshots";
 import {
   buildBreadcrumbSchema,
   buildPageUrl,
-  getProfessionalServiceId,
+  buildWebPageSchema,
+  getBusinessId,
 } from "@/lib/schema";
 import { buildPageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Therapy Services in California",
+  title: "Online Therapy Services in California",
   description:
-    "Explore individual therapy, couples therapy, and family therapy with EDH Therapy, plus evidence-based approaches, online sessions, and fee details for clients throughout California.",
+    "Explore online individual therapy, couples therapy, family therapy, and teen therapy for California clients navigating anxiety, grief, relationships, and life transitions.",
   pathname: "/services",
+  imageAlt: "EDH Therapy online therapy services for California clients",
 });
 
 const servicesPageUrl = buildPageUrl("/services");
-const professionalServiceId = getProfessionalServiceId();
+const businessId = getBusinessId();
 
-const servicesBreadcrumbSchema = buildBreadcrumbSchema([
+const serviceItems = [
+  {
+    name: "Online Individual Therapy",
+    description:
+      "One-on-one online therapy for anxiety, depression, self-esteem, identity exploration, and life transitions.",
+    audience: "Adults and teens",
+  },
+  {
+    name: "Online Couples Therapy",
+    description:
+      "Online relationship therapy for communication, conflict resolution, premarital support, and emotional reconnection.",
+    audience: "Couples",
+  },
+  {
+    name: "Online Family Therapy",
+    description:
+      "Online family therapy for family dynamics, parent-child communication, blended families, transitions, and rebuilding trust.",
+    audience: "Families",
+  },
+  {
+    name: "Online Teen Therapy",
+    description:
+      "Online adolescent therapy for ages 13-17 addressing anxiety, self-esteem, school stress, and family conflict.",
+    audience: "Teens",
+  },
+  {
+    name: "Anxiety Support",
+    description:
+      "Online therapy support for anxiety, stress, overwhelm, and emotional regulation.",
+    audience: "California clients",
+  },
+  {
+    name: "Relationship Challenges",
+    description:
+      "Online therapy for relationship challenges, boundaries, communication, and connection.",
+    audience: "Individuals and couples",
+  },
+  {
+    name: "Life Transitions",
+    description:
+      "Online therapy for life transitions, identity shifts, divorce, separation, and parenting changes.",
+    audience: "California clients",
+  },
+  {
+    name: "Depression Support",
+    description:
+      "Online therapy support for depression, low mood, and emotional disconnection.",
+    audience: "California clients",
+  },
+  {
+    name: "Self-Esteem",
+    description:
+      "Online therapy for self-esteem, identity, confidence, and personal growth.",
+    audience: "California clients",
+  },
+  {
+    name: "Grief and Loss",
+    description:
+      "Online therapy support for grief, loss, and emotionally difficult transitions.",
+    audience: "California clients",
+  },
+  {
+    name: "Family Dynamics",
+    description:
+      "Online therapy for family systems, communication patterns, and parent-child dynamics.",
+    audience: "Families",
+  },
+];
+
+const offerCatalogSchema = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  "@id": `${servicesPageUrl}#therapy-services`,
+  name: "Online Therapy Services",
+  url: servicesPageUrl,
+  itemListElement: serviceItems.map((service) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: service.name,
+      description: service.description,
+      serviceType: "Online mental health therapy",
+      provider: {
+        "@id": businessId,
+      },
+      areaServed: {
+        "@type": "State",
+        name: "California",
+      },
+      audience: {
+        "@type": "Audience",
+        audienceType: service.audience,
+      },
+      availableChannel: {
+        "@type": "ServiceChannel",
+        serviceUrl: servicesPageUrl,
+        serviceLocation: {
+          "@type": "VirtualLocation",
+          name: "Telehealth therapy sessions",
+          url: servicesPageUrl,
+        },
+      },
+    },
+  })),
+};
+
+const medicalTherapySchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalTherapy",
+  "@id": `${servicesPageUrl}#online-therapy`,
+  name: "Online Therapy",
+  description:
+    "Telehealth therapy for individuals, couples, teens, and families throughout California.",
+  provider: {
+    "@id": businessId,
+  },
+  areaServed: {
+    "@type": "State",
+    name: "California",
+  },
+};
+
+const servicesPageSchema = buildWebPageSchema({
+  pathname: "/services",
+  name: "Online Therapy Services in California",
+  description:
+    "Online individual therapy, couples therapy, family therapy, teen therapy, and mental health support areas offered by EDH Therapy.",
+  about: {
+    "@id": businessId,
+  },
+  mainEntity: {
+    "@id": `${servicesPageUrl}#therapy-services`,
+  },
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema("/services", [
   { name: "Home", pathname: "/" },
   { name: "Services", pathname: "/services" },
 ]);
-
-const serviceListSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Therapy Services",
-  url: servicesPageUrl,
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      item: {
-        "@type": "Service",
-        name: "Individual Therapy",
-        description:
-          "One-on-one support for anxiety, depression, self-esteem, identity exploration, and navigating life transitions.",
-        provider: {
-          "@id": professionalServiceId,
-        },
-      },
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      item: {
-        "@type": "Service",
-        name: "Couples Therapy",
-        description:
-          "Support for communication, conflict resolution, and deeper emotional connection in relationships.",
-        provider: {
-          "@id": professionalServiceId,
-        },
-      },
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      item: {
-        "@type": "Service",
-        name: "Family Therapy",
-        description:
-          "Support for family dynamics, communication patterns, and rebuilding trust within the family system.",
-        provider: {
-          "@id": professionalServiceId,
-        },
-      },
-    },
-  ],
-};
 
 export default function Services() {
   return (
@@ -80,17 +169,31 @@ export default function Services() {
 
       <main>
         <script
-          id="services-breadcrumb-jsonld"
+          id="services-page-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(servicesBreadcrumbSchema),
+            __html: JSON.stringify(servicesPageSchema),
           }}
         />
         <script
-          id="services-itemlist-jsonld"
+          id="services-offer-catalog-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(serviceListSchema),
+            __html: JSON.stringify(offerCatalogSchema),
+          }}
+        />
+        <script
+          id="services-medical-therapy-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(medicalTherapySchema),
+          }}
+        />
+        <script
+          id="services-breadcrumb-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbSchema),
           }}
         />
 
@@ -698,7 +801,7 @@ export default function Services() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                   <a
-                    href="tel:9164712562"
+                    href="tel:9165004431"
                     className="flex items-center gap-2 text-charcoal hover:text-sage transition-colors duration-300"
                   >
                     <svg
@@ -714,7 +817,7 @@ export default function Services() {
                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                       />
                     </svg>
-                    <span>(916) 471-2562</span>
+                    <span>(916) 500-4431</span>
                   </a>
                   <span className="hidden sm:block text-sand">|</span>
                   <a

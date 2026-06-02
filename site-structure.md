@@ -102,7 +102,7 @@ Ready to explore whether therapy is the right fit?
 
 Prefer direct contact?
 
-**Phone:** (916) 471-2562  
+**Phone:** (916) 500-4431  
 **Email:** [Add email placeholder]
 
 ---
@@ -328,7 +328,7 @@ Schedule a free 15-minute consultation to determine whether therapy is a good fi
 
 ## Contact Information
 
-**Phone:** (916) 471-2562  
+**Phone:** (916) 500-4431  
 **Email:** [Add email placeholder]
 
 ---

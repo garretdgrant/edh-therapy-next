@@ -3,43 +3,29 @@ import type { Metadata } from "next";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { buildPageMetadata } from "@/lib/page-metadata";
-import {
-  buildBreadcrumbSchema,
-  buildPageUrl,
-  getProfessionalServiceId,
-} from "@/lib/schema";
+import { buildPageUrl, getWebSiteId } from "@/lib/schema";
 
-export const metadata: Metadata = {
-  ...buildPageMetadata({
-    title: "Thank You",
-    description:
-      "Thanks for contacting EDH Therapy. Your message has been received and a response will follow within 1-2 business days.",
-    pathname: "/contact/thank-you",
-  }),
-  robots: {
-    index: false,
-    follow: true,
-  },
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: "Thank You",
+  description:
+    "Thanks for contacting EDH Therapy. Your message has been received and a response will follow within 1-2 business days.",
+  pathname: "/contact/thank-you",
+  noindex: true,
+});
 
 const thankYouPageUrl = buildPageUrl("/contact/thank-you");
-const professionalServiceId = getProfessionalServiceId();
-
-const thankYouBreadcrumbSchema = buildBreadcrumbSchema([
-  { name: "Home", pathname: "/" },
-  { name: "Contact", pathname: "/contact" },
-  { name: "Thank You", pathname: "/contact/thank-you" },
-]);
 
 const thankYouPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
+  "@id": `${thankYouPageUrl}#webpage`,
   name: "Thank You | EDH Therapy",
   url: thankYouPageUrl,
   description:
     "Confirmation page for successful contact form submissions to EDH Therapy.",
+  inLanguage: "en-US",
   isPartOf: {
-    "@id": professionalServiceId,
+    "@id": getWebSiteId(),
   },
 };
 
@@ -67,13 +53,6 @@ export default function ContactThankYouPage() {
       <Header />
 
       <main>
-        <script
-          id="thank-you-breadcrumb-jsonld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(thankYouBreadcrumbSchema),
-          }}
-        />
         <script
           id="thank-you-page-jsonld"
           type="application/ld+json"
@@ -138,10 +117,10 @@ export default function ContactThankYouPage() {
                   <p className="text-lg leading-relaxed text-warm-gray">
                     If your situation is urgent, please call{" "}
                     <a
-                      href="tel:9164712562"
+                      href="tel:9165004431"
                       className="font-medium text-charcoal transition-colors duration-300 hover:text-charcoal-soft"
                     >
-                      (916) 471-2562
+                      (916) 500-4431
                     </a>
                     . If you are experiencing a mental health crisis, call{" "}
                     <strong className="text-charcoal">988</strong> or go to the

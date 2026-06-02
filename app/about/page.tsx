@@ -8,26 +8,24 @@ import { therapistSeatedStoolPortrait } from "../headshots";
 import {
   buildBreadcrumbSchema,
   buildPageUrl,
+  buildWebPageSchema,
+  getBusinessId,
   getPersonId,
-  getProfessionalServiceId,
 } from "@/lib/schema";
 import { buildPageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "About Meagan Murray, AMFT",
   description:
-    "Learn more about Meagan Murray, AMFT, her background, values, training, and collaborative approach to therapy for individuals, couples, and families in California.",
+    "Meet Meagan Murray, AMFT, an El Dorado Hills-based therapist offering online therapy throughout California for individuals, couples, teens, and families.",
   pathname: "/about",
+  imageAlt:
+    "Meagan Murray, AMFT - El Dorado Hills-based online therapist serving California clients",
 });
 
 const aboutPageUrl = buildPageUrl("/about");
 const personId = getPersonId();
-const professionalServiceId = getProfessionalServiceId();
-
-const aboutBreadcrumbSchema = buildBreadcrumbSchema([
-  { name: "Home", pathname: "/" },
-  { name: "About", pathname: "/about" },
-]);
+const businessId = getBusinessId();
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -39,7 +37,7 @@ const personSchema = {
   url: aboutPageUrl,
   image: buildPageUrl(therapistSeatedStoolPortrait),
   email: "contact@edhtherapy.com",
-  telephone: "+1-916-471-2562",
+  telephone: "+1-916-500-4431",
   address: {
     "@type": "PostalAddress",
     addressLocality: "El Dorado Hills",
@@ -47,11 +45,13 @@ const personSchema = {
     addressCountry: "US",
   },
   description:
-    "Meagan Murray, AMFT, offers collaborative therapy to individuals, couples, and families seeking clarity, emotional safety, and meaningful change.",
+    "Meagan Murray, AMFT, offers collaborative online therapy to individuals, couples, teens, and families throughout California.",
   worksFor: {
-    "@id": professionalServiceId,
+    "@id": businessId,
   },
-  mainEntityOfPage: aboutPageUrl,
+  mainEntityOfPage: {
+    "@id": `${aboutPageUrl}#webpage`,
+  },
   alumniOf: [
     {
       "@type": "CollegeOrUniversity",
@@ -69,8 +69,32 @@ const personSchema = {
     "Narrative Therapy",
     "Family Systems",
     "Strength-Based Therapy",
+    "Anxiety Support",
+    "Relationship Challenges",
+    "Life Transitions",
+    "Teen Therapy",
+    "Family Therapy",
   ],
 };
+
+const aboutPageSchema = buildWebPageSchema({
+  pathname: "/about",
+  type: "AboutPage",
+  name: "About Meagan Murray, AMFT",
+  description:
+    "Professional background, therapy values, and online therapy approach for Meagan Murray, AMFT.",
+  about: {
+    "@id": businessId,
+  },
+  mainEntity: {
+    "@id": personId,
+  },
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema("/about", [
+  { name: "Home", pathname: "/" },
+  { name: "About", pathname: "/about" },
+]);
 
 export default function About() {
   return (
@@ -79,16 +103,19 @@ export default function About() {
 
       <main className="relative">
         <script
-          id="about-breadcrumb-jsonld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(aboutBreadcrumbSchema),
-          }}
-        />
-        <script
           id="about-person-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+        <script
+          id="about-page-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+        />
+        <script
+          id="about-breadcrumb-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
 
         {/* Hero Section */}
@@ -246,7 +273,7 @@ export default function About() {
                 <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl shadow-sand/20">
                   <Image
                     src={officeCorner}
-                    alt="Serene therapy office corner with soft light"
+                    alt="Calm room corner with soft natural light"
                     fill
                     className="object-cover"
                     sizes="(min-width: 1024px) 45vw, 100vw"
@@ -424,10 +451,11 @@ export default function About() {
                     </div>
                     <div className="p-4 bg-cream/60 rounded-xl">
                       <p className="font-medium text-charcoal">
-                        Clinical Supervision
+                        California Telehealth Practice
                       </p>
                       <p className="text-warm-gray text-sm mt-1">
-                        Supervised by: [Supervisor Name, License #]
+                        Online therapy sessions for clients throughout
+                        California
                       </p>
                     </div>
                   </div>
@@ -632,7 +660,7 @@ export default function About() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                   <a
-                    href="tel:9164712562"
+                    href="tel:9165004431"
                     className="flex items-center gap-2 text-charcoal hover:text-sage transition-colors duration-300"
                   >
                     <svg
@@ -648,7 +676,7 @@ export default function About() {
                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                       />
                     </svg>
-                    <span>(916) 471-2562</span>
+                    <span>(916) 500-4431</span>
                   </a>
                   <span className="hidden sm:block text-sand">|</span>
                   <a

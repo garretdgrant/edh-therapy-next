@@ -107,7 +107,7 @@ If you're ready to explore whether therapy is the right fit, I offer a free 15-m
 
 Prefer to reach out directly?
 
-**Phone:** (916) 471-2562  
+**Phone:** (916) 500-4431  
 **Email:** [Add email here]
 
 ---

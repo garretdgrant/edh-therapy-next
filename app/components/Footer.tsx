@@ -1,22 +1,23 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "FAQs", href: "/faqs" },
+  { name: "Contact", href: "/contact" },
+];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "FAQs", href: "/faqs" },
-    { name: "Contact", href: "/contact" },
-  ];
 
   return (
-    <footer className="py-16 bg-charcoal text-cream">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+    <footer className="bg-charcoal py-16 text-cream">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mb-12 grid gap-12 md:grid-cols-3">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-sage flex items-center justify-center">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sage">
                 <span className="font-serif text-lg font-semibold text-charcoal">
                   E
                 </span>
@@ -25,23 +26,27 @@ export default function Footer() {
                 EDH Therapy
               </span>
             </div>
-            <p className="text-sand text-sm leading-relaxed">
-              Compassionate therapy for growth, healing, and self-discovery.
-              Online therapy serving clients throughout California.
+            <p className="text-sm leading-relaxed text-sand">
+              Meagan Murray, AMFT offers compassionate online therapy for
+              anxiety, depression, couples, teens, and families. Serving El
+              Dorado Hills, Folsom, Cameron Park, Sacramento, Roseville, and all
+              of California.
             </p>
           </div>
 
           <div className="space-y-4">
             <h4 className="font-medium text-cream">Quick Links</h4>
-            <div className="flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-sand hover:text-cream transition-colors duration-300 text-sm"
-                >
-                  {link.name}
-                </a>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-sand">
+              {navLinks.map((link, index) => (
+                <div key={link.name} className="flex items-center gap-3">
+                  <Link
+                    href={link.href}
+                    className="transition-colors duration-300 hover:text-cream"
+                  >
+                    {link.name}
+                  </Link>
+                  {index < navLinks.length - 1 ? <span>·</span> : null}
+                </div>
               ))}
             </div>
           </div>
@@ -50,10 +55,10 @@ export default function Footer() {
             <h4 className="font-medium text-cream">Contact</h4>
             <div className="flex flex-col gap-2 text-sm text-sand">
               <a
-                href="tel:9164712562"
-                className="hover:text-cream transition-colors duration-300"
+                href="tel:9165004431"
+                className="transition-colors duration-300 hover:text-cream"
               >
-                (916) 471-2562
+                (916) 500-4431
               </a>
               <span>El Dorado Hills, California</span>
               <span>Online Sessions Only</span>
@@ -61,8 +66,16 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="py-6 px-6 bg-charcoal-soft/30 rounded-xl mb-12">
-          <p className="text-sand text-sm text-center">
+        <div className="mb-10 rounded-xl bg-charcoal-soft/30 px-6 py-6">
+          <p className="text-center text-sm text-sand">
+            <strong className="text-cream">Areas Served:</strong> El Dorado
+            Hills · Folsom · Cameron Park · Sacramento · Roseville · Granite Bay
+            · All of California
+          </p>
+        </div>
+
+        <div className="mb-12 rounded-xl bg-charcoal-soft/30 px-6 py-6">
+          <p className="text-center text-sm text-sand">
             <strong className="text-cream">Crisis Resources:</strong> If you are
             experiencing a crisis or emergency, please call 988 or go to your
             nearest emergency room. Online therapy is not appropriate for
@@ -70,49 +83,25 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="pt-8 border-t border-charcoal-soft/50">
-          <div className="flex flex-col items-center gap-4 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center">
-            <p className="text-sand text-sm md:justify-self-start">
+        <div className="border-t border-charcoal-soft/50 pt-8">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <p className="text-sm text-sand">
               © {currentYear} EDH Therapy. All rights reserved.
             </p>
 
-            <div className="md:justify-self-center">
-              <a
-                href="https://www.edcwebdesign.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Website by EDC Web Design"
-                className="group flex items-center gap-3 rounded-xl border border-cream/10 bg-cream/5 px-4 py-3 transition-colors duration-300 hover:border-cream/20 hover:bg-cream/8"
-              >
-                <span className="text-xs uppercase tracking-[0.24em] text-sand/80 transition-colors duration-300 group-hover:text-cream">
-                  Website by
-                </span>
-                <Image
-                  src="https://www.edcwebdesign.com/logo.png"
-                  alt="EDC Web Design"
-                  width={180}
-                  height={46}
-                  sizes="180px"
-                  quality={80}
-                  unoptimized
-                  className="h-11 w-auto opacity-80 transition-opacity duration-300 group-hover:opacity-100"
-                />
-              </a>
-            </div>
-
-            <div className="flex gap-6 text-sm text-sand md:justify-self-end">
-              <a
+            <div className="flex gap-6 text-sm text-sand">
+              <Link
                 href="/privacy"
-                className="hover:text-cream transition-colors duration-300"
+                className="transition-colors duration-300 hover:text-cream"
               >
                 Privacy Policy
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/terms"
-                className="hover:text-cream transition-colors duration-300"
+                className="transition-colors duration-300 hover:text-cream"
               >
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>

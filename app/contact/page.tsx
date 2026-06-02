@@ -5,36 +5,61 @@ import ContactForm from "../components/ContactForm";
 import {
   buildBreadcrumbSchema,
   buildPageUrl,
-  getProfessionalServiceId,
+  getBusinessId,
+  getWebSiteId,
 } from "@/lib/schema";
 import { buildPageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Contact for a Free 15-Minute Consultation",
+  title: "Book a Free Therapy Consultation",
   description:
-    "Contact EDH Therapy to book a free 15-minute consultation, ask questions, or get started with online therapy throughout California.",
+    "Contact EDH Therapy to schedule a free 15-minute consultation for online therapy in California. Sessions are offered by telehealth only.",
   pathname: "/contact",
+  imageAlt: "Contact EDH Therapy for online therapy in California",
 });
 
 const contactPageUrl = buildPageUrl("/contact");
-const professionalServiceId = getProfessionalServiceId();
+const businessId = getBusinessId();
 
-const contactBreadcrumbSchema = buildBreadcrumbSchema([
-  { name: "Home", pathname: "/" },
-  { name: "Contact", pathname: "/contact" },
-]);
+const contactPointSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPoint",
+  "@id": `${contactPageUrl}#consultation-contact`,
+  contactType: "therapy consultation",
+  telephone: "+1-916-500-4431",
+  email: "contact@edhtherapy.com",
+  url: contactPageUrl,
+  areaServed: {
+    "@type": "State",
+    name: "California",
+  },
+  availableLanguage: "en-US",
+};
 
 const contactPageSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
+  "@id": `${contactPageUrl}#webpage`,
   name: "Contact EDH Therapy",
   url: contactPageUrl,
   description:
-    "Contact EDH Therapy to schedule a free 15-minute consultation for online therapy throughout California.",
+    "Contact EDH Therapy to schedule a free 15-minute consultation for online therapy in California. Sessions are offered by telehealth only.",
+  inLanguage: "en-US",
+  isPartOf: {
+    "@id": getWebSiteId(),
+  },
+  about: {
+    "@id": businessId,
+  },
   mainEntity: {
-    "@id": professionalServiceId,
+    "@id": `${contactPageUrl}#consultation-contact`,
   },
 };
+
+const breadcrumbSchema = buildBreadcrumbSchema("/contact", [
+  { name: "Home", pathname: "/" },
+  { name: "Contact", pathname: "/contact" },
+]);
 
 export default function Contact() {
   return (
@@ -43,17 +68,24 @@ export default function Contact() {
 
       <main>
         <script
-          id="contact-breadcrumb-jsonld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(contactBreadcrumbSchema),
-          }}
-        />
-        <script
           id="contact-page-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(contactPageSchema),
+          }}
+        />
+        <script
+          id="contact-point-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(contactPointSchema),
+          }}
+        />
+        <script
+          id="contact-breadcrumb-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbSchema),
           }}
         />
 
@@ -104,7 +136,7 @@ export default function Contact() {
                 {/* Contact Info Cards */}
                 <div className="space-y-4 opacity-0-initial animate-fade-in-up delay-400">
                   <a
-                    href="tel:9164712562"
+                    href="tel:9165004431"
                     className="group flex items-center gap-4 p-4 bg-cream-dark/50 rounded-2xl hover:bg-cream-dark transition-all duration-300"
                   >
                     <div className="w-12 h-12 rounded-xl bg-sage-soft/30 flex items-center justify-center group-hover:bg-sage-soft/50 transition-colors duration-300">
@@ -125,7 +157,7 @@ export default function Contact() {
                     <div>
                       <p className="text-sm text-warm-gray">Phone</p>
                       <p className="font-medium text-charcoal">
-                        (916) 471-2562
+                        (916) 500-4431
                       </p>
                     </div>
                   </a>

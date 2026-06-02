@@ -85,7 +85,11 @@ export default function ContactForm() {
   };
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit} aria-busy={isSubmitting}>
+    <form
+      className="space-y-6"
+      onSubmit={handleSubmit}
+      aria-busy={isSubmitting}
+    >
       <div style={{ display: "none" }}>
         <label htmlFor="company">Company</label>
         <input
@@ -250,10 +254,10 @@ export default function ContactForm() {
           <p className="text-sm text-warm-gray">
             If this issue continues, please call{" "}
             <a
-              href="tel:9164712562"
+              href="tel:9165004431"
               className="font-medium text-charcoal transition-colors duration-300 hover:text-charcoal-soft"
             >
-              (916) 471-2562
+              (916) 500-4431
             </a>{" "}
             and let me know your message did not go through.
           </p>

@@ -6,15 +6,18 @@ import { therapistStandingPortrait } from "../headshots";
 import {
   buildBreadcrumbSchema,
   buildPageUrl,
-  getProfessionalServiceId,
+  getBusinessId,
+  getFaqPageId,
+  getWebSiteId,
 } from "@/lib/schema";
 import { buildPageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Therapy FAQs",
+  title: "Online Therapy FAQs",
   description:
-    "Read common questions about therapy sessions, online appointments, fees, insurance, and getting started with EDH Therapy in California.",
+    "Answers to common questions about online therapy, session length, fees, insurance, telehealth, scheduling, and starting therapy with EDH Therapy.",
   pathname: "/faqs",
+  imageAlt: "EDH Therapy online therapy frequently asked questions",
 });
 
 const faqs = [
@@ -101,24 +104,24 @@ const faqs = [
 ];
 
 const faqPageUrl = buildPageUrl("/faqs");
-const professionalServiceId = getProfessionalServiceId();
-
-const faqBreadcrumbSchema = buildBreadcrumbSchema([
-  { name: "Home", pathname: "/" },
-  { name: "FAQs", pathname: "/faqs" },
-]);
+const businessId = getBusinessId();
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": `${faqPageUrl}#faqpage`,
+  "@id": getFaqPageId("/faqs"),
   url: faqPageUrl,
-  name: "Frequently Asked Questions",
+  name: "Online Therapy FAQs",
   description:
-    "Answers to common questions about therapy, online sessions, fees, insurance, and what to expect from EDH Therapy.",
-  mainEntityOfPage: faqPageUrl,
+    "Answers to common questions about online therapy, session length, fees, insurance, telehealth, scheduling, and what to expect from EDH Therapy.",
+  isPartOf: {
+    "@id": getWebSiteId(),
+  },
+  mainEntityOfPage: {
+    "@id": getFaqPageId("/faqs"),
+  },
   about: {
-    "@id": professionalServiceId,
+    "@id": businessId,
   },
   mainEntity: faqs.flatMap((category) =>
     category.questions.map((item) => ({
@@ -132,6 +135,11 @@ const faqSchema = {
   ),
 };
 
+const breadcrumbSchema = buildBreadcrumbSchema("/faqs", [
+  { name: "Home", pathname: "/" },
+  { name: "FAQs", pathname: "/faqs" },
+]);
+
 export default function FAQs() {
   return (
     <div className="min-h-screen bg-cream">
@@ -139,16 +147,14 @@ export default function FAQs() {
 
       <main>
         <script
-          id="faqs-breadcrumb-jsonld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqBreadcrumbSchema),
-          }}
-        />
-        <script
           id="faqs-faqpage-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <script
+          id="faqs-breadcrumb-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
 
         {/* Hero Section */}
@@ -355,7 +361,7 @@ export default function FAQs() {
                   </svg>
                 </a>
                 <a
-                  href="tel:9164712562"
+                  href="tel:9165004431"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-sand text-charcoal-soft rounded-full hover:border-sage hover:text-charcoal transition-all duration-300"
                 >
                   <svg
@@ -371,7 +377,7 @@ export default function FAQs() {
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                     />
                   </svg>
-                  <span>(916) 471-2562</span>
+                  <span>(916) 500-4431</span>
                 </a>
               </div>
             </div>
