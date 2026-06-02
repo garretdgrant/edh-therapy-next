@@ -161,13 +161,13 @@ Common questions about therapy with Meagan Murray, AMFT. Learn about session cos
 **Title Tag:**
 
 ```
-Book a Free Consultation | EDH Therapy | (916) 500-4431
+Book a Free Consultation | EDH Therapy | 916-500-4431
 ```
 
 **Meta Description:**
 
 ```
-Schedule a free 15-minute consultation with Meagan Murray, AMFT. Online therapy throughout California. Call (916) 500-4431 or book online today.
+Schedule a free 15-minute consultation with Meagan Murray, AMFT. Online therapy throughout California. Call 916-500-4431 or book online today.
 ```
 
 ---
@@ -822,7 +822,7 @@ Each city name links to `/areas-served`.
 | **Secondary Categories**    | Mental Health Service, Counselor, Psychotherapist                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Address**                 | El Dorado Hills, CA 95762 (use service-area business if no physical office)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | **Service Area**            | El Dorado Hills, Folsom, Cameron Park, Sacramento, Roseville, California (statewide)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **Phone**                   | (916) 500-4431                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Phone**                   | 916-500-4431                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | **Website**                 | https://www.eldoradohillstherapy.com                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **Appointment URL**         | https://www.eldoradohillstherapy.com/contact                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | **Hours**                   | Mon–Fri: 9:00 AM – 5:00 PM (adjust to actual availability)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
@@ -865,7 +865,7 @@ Ensure the following is **identical** on every directory and the website:
 ```
 EDH Therapy — Meagan Murray, AMFT
 El Dorado Hills, CA 95762
-(916) 500-4431
+916-500-4431
 https://www.eldoradohillstherapy.com
 ```
 

@@ -825,7 +825,7 @@ Book a Free Consultation
 
 Prefer to reach out directly?
 
-[(916) 500-4431](tel:9165004431) | [Email](mailto:contact@edhtherapy.com)
+[916-500-4431](tel:9165004431) | [Email](mailto:contact@edhtherapy.com)
 
 ---
 
@@ -843,7 +843,7 @@ Home `[→ /]` · About `[→ /about]` · Services `[→ /services]` · FAQs `[�
 
 `[Contact block]`
 
-(916) 500-4431
+916-500-4431
 El Dorado Hills, California
 Online Sessions Only
 
@@ -904,7 +904,7 @@ Privacy Policy `[→ /privacy]` · Terms of Service `[→ /terms]`
 | "Depression & Low Mood"                      | `/services` (or `/depression-therapy` when created) | "Areas of Support" list         |
 | "Grief & Loss"                               | `/services` (or `/grief-therapy` when created)      | "Areas of Support" list         |
 | "FAQs" or "common questions"                 | `/faqs`                                             | Any relevant paragraph          |
-| "(916) 500-4431"                             | `tel:9165004431`                                    | Footer, CTA section             |
+| "916-500-4431"                             | `tel:9165004431`                                    | Footer, CTA section             |
 | "Email"                                      | `mailto:contact@edhtherapy.com`                     | Footer, CTA section             |
 
 ### Links Currently Missing (High Priority)

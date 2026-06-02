@@ -120,7 +120,7 @@ export default function ContactThankYouPage() {
                       href="tel:9165004431"
                       className="font-medium text-charcoal transition-colors duration-300 hover:text-charcoal-soft"
                     >
-                      (916) 500-4431
+                      916-500-4431
                     </a>
                     . If you are experiencing a mental health crisis, call{" "}
                     <strong className="text-charcoal">988</strong> or go to the

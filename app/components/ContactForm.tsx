@@ -257,7 +257,7 @@ export default function ContactForm() {
               href="tel:9165004431"
               className="font-medium text-charcoal transition-colors duration-300 hover:text-charcoal-soft"
             >
-              (916) 500-4431
+              916-500-4431
             </a>{" "}
             and let me know your message did not go through.
           </p>

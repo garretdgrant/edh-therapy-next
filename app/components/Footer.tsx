@@ -58,7 +58,7 @@ export default function Footer() {
                 href="tel:9165004431"
                 className="transition-colors duration-300 hover:text-cream"
               >
-                (916) 500-4431
+                916-500-4431
               </a>
               <span>El Dorado Hills, California</span>
               <span>Online Sessions Only</span>

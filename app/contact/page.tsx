@@ -157,7 +157,7 @@ export default function Contact() {
                     <div>
                       <p className="text-sm text-warm-gray">Phone</p>
                       <p className="font-medium text-charcoal">
-                        (916) 500-4431
+                        916-500-4431
                       </p>
                     </div>
                   </a>

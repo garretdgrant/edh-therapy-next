@@ -201,7 +201,7 @@ Character count: 155
   "@type": "ProfessionalService",
   "name": "EDH Therapy",
   "url": "https://www.eldoradohillstherapy.com",
-  "telephone": "+19165004431",
+  "telephone": "+1-916-500-4431",
   "email": "contact@edhtherapy.com",
   "description": "Individual, couples, and family therapy in El Dorado Hills, CA. Online telehealth sessions throughout California provided by Meagan Murray, AMFT.",
   "image": "https://www.eldoradohillstherapy.com/headshots/optimized/edh-therapy-therapist-chair-portrait.webp",
@@ -413,7 +413,7 @@ Character count: 155
       "name": "How do I book a first appointment with EDH Therapy?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Start with a free 15-minute phone consultation to discuss your goals and see if it's a good fit. You can book online at eldoradohillstherapy.com/contact or call (916) 500-4431."
+        "text": "Start with a free 15-minute phone consultation to discuss your goals and see if it's a good fit. You can book online at eldoradohillstherapy.com/contact or call 916-500-4431."
       }
     },
     {
@@ -693,7 +693,7 @@ I integrate several evidence-based modalities including Cognitive Behavioral The
 
 **[H3] How do I book a first appointment with EDH Therapy?**
 
-Start with a free 15-minute phone consultation. During this call, we'll discuss what's bringing you to therapy and determine if we're a good fit. You can book online or call (916) 500-4431.
+Start with a free 15-minute phone consultation. During this call, we'll discuss what's bringing you to therapy and determine if we're a good fit. You can book online or call 916-500-4431.
 
 [Button: "Book a Free Consultation" → /contact]
 
@@ -733,7 +733,7 @@ Book a free 15-minute consultation to discuss your goals and see if we're a good
 
 Prefer to reach out directly?
 
-[Link: "(916) 500-4431" → tel:9165004431] | [Link: "Email" → mailto:contact@edhtherapy.com]
+[Link: "916-500-4431" → tel:9165004431] | [Link: "Email" → mailto:contact@edhtherapy.com]
 
 ---
 
@@ -761,7 +761,7 @@ Prefer to reach out directly?
 | Book a Free Consultation             | /contact                              | Hero CTA button                         | Exists                                                                    |
 | View Approaches                      | #modalities                           | Hero secondary button                   | Exists                                                                    |
 | Book a Free Consultation             | /contact                              | Bottom CTA button                       | Exists                                                                    |
-| (916) 500-4431                       | tel:9165004431                        | Bottom contact                          | Exists                                                                    |
+| 916-500-4431                       | tel:9165004431                        | Bottom contact                          | Exists                                                                    |
 | Email                                | mailto:contact@edhtherapy.com         | Bottom contact                          | Exists                                                                    |
 | Home                                 | /                                     | Footer                                  | Exists                                                                    |
 | About                                | /about                                | Footer                                  | Exists                                                                    |

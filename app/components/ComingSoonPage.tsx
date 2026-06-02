@@ -107,7 +107,7 @@ export default function ComingSoonPage() {
                     href="tel:9165004431"
                     className="transition-colors duration-300 hover:text-charcoal-soft"
                   >
-                    (916) 500-4431
+                    916-500-4431
                   </a>
                   <span className="hidden h-1.5 w-1.5 rounded-full bg-charcoal/25 sm:block" />
                   <a
