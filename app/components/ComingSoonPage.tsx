@@ -2,27 +2,10 @@ import Image from "next/image";
 import officeCorner from "../assets/About/office-corner.webp";
 import greenTrail from "../assets/About/green-trail.webp";
 import { therapistChairPortrait } from "../headshots";
-
-const highlights = [
-  {
-    eyebrow: "A gentler arrival",
-    title: "A quieter intake experience",
-    description:
-      "Fresh copy, calmer transitions, and a more grounded first impression are being shaped with care.",
-  },
-  {
-    eyebrow: "More guidance",
-    title: "Resources that feel steady",
-    description:
-      "Supportive educational content and thoughtful next steps are being prepared for clients who want clarity before reaching out.",
-  },
-  {
-    eyebrow: "Same heart, refined",
-    title: "The atmosphere is the work",
-    description:
-      "Every detail is being tuned to feel soft, spacious, and emotionally safe rather than simply finished.",
-  },
-];
+import {
+  comingSoonHighlights,
+  comingSoonStatusItems,
+} from "@/lib/site-pages/coming-soon.data";
 
 export default function ComingSoonPage() {
   return (
@@ -121,7 +104,7 @@ export default function ComingSoonPage() {
             </div>
 
             <div className="animate-fade-in-up delay-500 grid gap-4 md:grid-cols-3">
-              {highlights.map((highlight) => (
+              {comingSoonHighlights.map((highlight) => (
                 <article
                   key={highlight.title}
                   className="rounded-[1.5rem] border border-charcoal/10 bg-white/55 p-5 shadow-[0_20px_40px_rgba(61,57,51,0.06)] backdrop-blur transition-transform duration-500 hover:-translate-y-1"
@@ -200,11 +183,7 @@ export default function ComingSoonPage() {
                       </div>
 
                       <div className="mt-6 space-y-3">
-                        {[
-                          "Refining message hierarchy",
-                          "Preparing softer visual storytelling",
-                          "Polishing the call-to-action flow",
-                        ].map((item) => (
+                        {comingSoonStatusItems.map((item) => (
                           <div
                             key={item}
                             className="flex items-center gap-3 rounded-2xl bg-white/55 px-4 py-3"
