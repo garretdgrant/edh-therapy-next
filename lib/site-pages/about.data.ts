@@ -9,7 +9,7 @@ export const aboutPageData: ContractPageData = {
   metadata: buildPageMetadata({
     title: "Meagan Murray, AMFT | El Dorado Hills Therapist",
     description:
-      "Meet Meagan Murray, AMFT — an online therapist serving El Dorado Hills & California. Warm, evidence-based care (CBT, EFT) for individuals, couples & families.",
+      "Meet Meagan Murray, AMFT: an online therapist serving El Dorado Hills & California. Warm, evidence-based care (CBT, EFT) for individuals, couples & families.",
     pathname: "/about",
     imageAlt:
       "Meagan Murray, AMFT, online therapist in El Dorado Hills, California",
